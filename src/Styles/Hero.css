@@ -1,0 +1,189 @@
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 180px;
+
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+
+/* =========================
+   HERO CONTENT
+========================= */
+
+.hero-content {
+  max-width: 560px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 22px;
+}
+
+.hero-content h1 span {
+  color: #1da1ff;
+}
+
+.hero-content p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #fff;
+  max-width: 480px;
+  margin-bottom: 36px;
+}
+
+
+
+.hero-buttons {
+  display: flex;
+  gap: 18px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #1da1ff, #0239b0);
+  border: none;
+  color: #ffffff;
+  padding: 14px 30px;
+  border-radius: 30px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid rgba(29, 161, 255);
+  color: #ffffff;
+  padding: 14px 30px;
+  border-radius: 30px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: rgba(29, 161, 255, 0.15);
+}
+
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-image::before {
+  content: "";
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(
+    circle,
+    rgba(29, 161, 255, 0.55),
+    transparent 70%
+  );
+  filter: blur(80px);
+  right: 160px;
+  bottom: 80px;
+  z-index: 1;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 720px;
+  height: auto;                 /* ✅ responsive */
+  position: relative;
+  z-index: 2;
+  background: transparent;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .hero {
+    gap: 120px;
+    padding: 60px;
+  }
+
+  .hero-image img {
+    max-width: 560px;
+  }
+
+  .hero-image::before {
+    width: 300px;
+    height: 300px;
+    filter: blur(70px);
+    right: 100px;
+    bottom: 60px;
+  }
+}
+
+/* Small Tablet / Large Mobile */
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    gap: 60px;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero-content p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-image {
+    justify-content: center;
+  }
+
+  .hero-image img {
+    max-width: 460px;
+  }
+
+  .hero-image::before {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .hero {
+    padding: 40px 24px;
+    gap: 40px;
+  }
+
+  .hero-content h1 {
+    font-size: 36px;
+  }
+
+  .hero-image img {
+    max-width: 320px;
+  }
+
+  .hero-image::before {
+    width: 220px;
+    height: 220px;
+    filter: blur(60px);
+  }
+}

@@ -1,0 +1,23 @@
+.home-points {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 40px;
+}
+
+.home-points li {
+  position: relative;
+  padding-left: 34px;
+  margin-bottom: 18px;
+  color: #cbd5e1;
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+.home-points li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  color: #1da1ff;
+  font-weight: bold;
+}
