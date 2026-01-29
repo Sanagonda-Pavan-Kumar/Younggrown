@@ -13,7 +13,7 @@ import AttendanceManagement from "./components_temp/AttendanceManagement";
 import Payroll from "./components_temp/Payroll";
 import PerformanceManagement from "./components_temp/PerformanceManagement";
 import ReportsAnalytics from "./components_temp/ReportsAnalytics";
-import AssetManagement from "./components_temp/AttendanceManagement";
+import AssetManagement from "./components_temp/AssetManagement";
 import Chat from "./components_temp/chat";
 import Support from "./components_temp/Support";
 import RewardsRecognition from "./components_temp/RewardsRecognition";
@@ -30,8 +30,7 @@ export default function App() {
           <Route path="/product" element={<Product />} />
           <Route path="/services" element={<Services />} />
            <Route path="/careers" element={<Careers />} />
-           <Route path="/contactus" element={<ContactUs />} />
-           
+           <Route path="/contactus" element={<ContactUs />} />          
            <Route path="/employeemanagement" element={<EmployeeManagement />} />
             <Route path="/recruitment" element={<Recruitment />} />
              <Route path="/attendance" element={<AttendanceManagement />} />

@@ -124,7 +124,7 @@ const productItems = [
   { label: "Attendance", icon: FiClock, path: "./AttendanceManagement" },
   { label: "Payroll", icon: FiDollarSign, path: "./payroll" },
   { label: "Performance", icon: FiTrendingUp, path: "./PerformanceManagement" },
-  { label: "Reports & Analytics", icon: FiBarChart2, path: "/ReportsAnalysis" },
+  { label: "Reports & Analytics", icon: FiBarChart2, path: "./ReportsAnalytics" },
   { label: "Assets", icon: FiBriefcase, path: "./AssetManagement" },
   { label: "Chat", icon: FiCpu, path: "./chat" },
   { label: "Support", icon: FiHeadphones, path: "./Support" },
