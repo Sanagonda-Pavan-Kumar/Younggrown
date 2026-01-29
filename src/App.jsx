@@ -33,7 +33,7 @@ export default function App() {
            <Route path="/contactus" element={<ContactUs />} />          
            <Route path="/employeemanagement" element={<EmployeeManagement />} />
             <Route path="/recruitment" element={<Recruitment />} />
-             <Route path="/attendance" element={<AttendanceManagement />} />
+             <Route path="/AttendanceManagement" element={<AttendanceManagement />} />
               <Route path="/payroll" element={<Payroll />} />
                <Route path="/performancemanagement" element={<PerformanceManagement />} />
                 <Route path="/reportsanalytics" element={<ReportsAnalytics />} />

@@ -121,7 +121,7 @@ export default function Navbar() {
 const productItems = [
   { label: "Employee Management", icon: FiUsers, path: "./EmployeeManagement" },
   { label: "Recruitment", icon: FiUserPlus, path: "./Recruitment" },
-  { label: "Attendance", icon: FiClock, path: "./AttendanceManagement" },
+  { label: "AttendanceManagement", icon: FiClock, path: "./AttendanceManagement" },
   { label: "Payroll", icon: FiDollarSign, path: "./payroll" },
   { label: "Performance", icon: FiTrendingUp, path: "./PerformanceManagement" },
   { label: "Reports & Analytics", icon: FiBarChart2, path: "./ReportsAnalytics" },
