@@ -133,10 +133,10 @@ const productItems = [
 ];
 
 const serviceItems = [
-  { label: "IT Staffing", icon: FiCpu, path: "/services/it-staffing" },
-  { label: "Non-IT Staffing", icon: FiLayers, path: "/services/non-it-staffing" },
-  { label: "Training", icon: FiAward, path: "/services/training" },
-  { label: "Freelancing", icon: FiGlobe, path: "/services/freelancing" },
+  { label: "IT Staffing", icon: FiCpu, path: "./ITStaffing" },
+  { label: "Non-IT Staffing", icon: FiLayers, path: "./NonTechStaffing" },
+  { label: "Training", icon: FiAward, path: "./Training" },
+  { label: "Freelancing", icon: FiGlobe, path: "./Freelancing" },
 ];
 
 /* ---------------- STYLES ---------------- */

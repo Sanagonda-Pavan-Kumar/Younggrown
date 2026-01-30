@@ -18,6 +18,10 @@ import Chat from "./components_temp/chat";
 import Support from "./components_temp/Support";
 import RewardsRecognition from "./components_temp/RewardsRecognition";
 import ActivityTracker from "./components_temp/ActivityTracker";
+import ITStaffing from "./components_temp/ServicesNav/ITStaffing";
+import NonTechStaffing from "./components_temp/ServicesNav/NonTechStaffing";
+import Training from "./components_temp/ServicesNav/Training";
+import Freelancing from "./components_temp/ServicesNav/Freelancing";
 
 export default function App() {
   return (
@@ -42,6 +46,13 @@ export default function App() {
                   <Route path="/assetManagement" element={<AssetManagement/>}/>
                   <Route path="/chat" element={<Chat/>}/>
                    <Route path="/activitytracker" element={<ActivityTracker/>}/>
+
+
+                 <Route path="/ITStaffing" element={<ITStaffing/>}/>
+                 <Route path="/NonTechStaffing" element={<NonTechStaffing/>}/>
+                 <Route path="/Training" element={<Training/>}/>
+                 <Route path="/Freelancing" element={<Freelancing/>}/>
+
       </Routes>
     </BrowserRouter>
   );
