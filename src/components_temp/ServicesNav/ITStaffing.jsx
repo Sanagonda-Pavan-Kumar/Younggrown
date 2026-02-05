@@ -19,6 +19,15 @@ export default function ITStaffing() {
     window.scrollTo(0, 0);
   }, []);
 
+  // Data for the new spinal design using your original content
+  const hiringStrategy = [
+    { no: "01", title: "Role Analysis", desc: "Translating tech requirements into actionable plans.", icon: <HiOutlineDocumentText /> },
+    { no: "02", title: "Profile Screening", desc: "Filtering the best talent through rigorous vetting.", icon: <HiOutlineMagnifyingGlassCircle /> },
+    { no: "03", title: "Technical Interview", desc: "Validation by our expert internal technical panel.", icon: <HiOutlineCpuChip /> },
+    { no: "04", title: "Client Round", desc: "Direct interaction with the final short-listed experts.", icon: <HiOutlineUsers /> },
+    { no: "05", title: "Onboarding", desc: "End-to-end support for a seamless joining experience.", icon: <HiOutlineRocketLaunch /> },
+  ];
+
   return (
     <motion.div style={styles.page} initial="hidden" animate="visible" variants={pageVariants}>
 
@@ -28,7 +37,6 @@ export default function ITStaffing() {
           We Deliver Talent <br />
           <span style={styles.blueText}>On Your Deadline</span>
         </h1>
-       
         <div style={styles.heroBtns}>
           <button style={styles.primaryBtn}>Raise Hiring Request</button>
           <button style={styles.secondaryBtn}>See How It Works</button>
@@ -45,37 +53,67 @@ export default function ITStaffing() {
               experience range, location, interview process, and delivery timelines.
               Our recruiters translate these requirements into an actionable hiring plan.
             </p>
-          
           </div>
           <div style={styles.visualSide}>
-            <div style={styles.iconBox}>
-              <HiOutlineBriefcase size={90} color="#3b82f6" />
-            </div>
+            <img 
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80" 
+              alt="Hiring Requirements Planning" 
+              style={styles.sideImage}
+            />
           </div>
         </div>
       </motion.div>
 
-      {/* PROCESS FLOW */}
-      <motion.div style={styles.trackerContainer} variants={fadeUp}>
-        <h3 style={styles.trackerHeading}>Our Proven Staffing Process</h3>
-        <div style={styles.pipelineFlow}>
-          <TrackerNode step="01" label=" Role Analysis" icon={<HiOutlineDocumentText />} active />
-          <div style={styles.arrow}>→</div>
-          <TrackerNode step="02" label=" Profile Screening" icon={<HiOutlineMagnifyingGlassCircle />} active />
-          <div style={styles.arrow}>→</div>
-          <TrackerNode step="03" label=" Technical Interview" icon={<HiOutlineCpuChip />} active />
-          <div style={styles.arrow}>→</div>
-          <TrackerNode step="04" label=" Client Round" icon={<HiOutlineUsers />} active />
-          <div style={styles.arrow}>→</div>
-          <TrackerNode step="05" label=" Onboarding" icon={<HiOutlineRocketLaunch />} active />
+      {/* REDESIGNED PROCESS FLOW (SPINAL PATH) */}
+      <motion.section style={styles.trackerContainer} variants={fadeUp}>
+        <h2 style={styles.trackerHeading}>Our Proven Staffing Process</h2>
+        
+        <div style={styles.pathContainer}>
+          {/* Vertical Line Background */}
+          <div style={styles.spinalLine}></div>
+
+          {hiringStrategy.map((s, i) => (
+            <motion.div
+              key={s.no}
+              style={{
+                ...styles.pathItem,
+                flexDirection: i % 2 === 0 ? "row" : "row-reverse",
+              }}
+              initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+            >
+              {/* Content Side */}
+              <div style={styles.pathContentBox}>
+                <div style={styles.nodeIcon}>{s.icon}</div>
+                <h3 style={styles.nodeTitle}>{s.title}</h3>
+                <p style={styles.nodeDesc}>{s.desc}</p>
+              </div>
+
+              {/* Center Circle Side */}
+              <div style={styles.nodePointWrapper}>
+                <div style={styles.nodePoint}>
+                  <span style={styles.nodeNumber}>{s.no}</span>
+                </div>
+              </div>
+
+              {/* Spacer Side to keep balance */}
+              <div style={styles.pathSpacer}></div>
+            </motion.div>
+          ))}
         </div>
-      </motion.div>
+      </motion.section>
 
       {/* INTERVIEW OWNERSHIP */}
       <motion.div style={styles.wideCard} variants={fadeUp}>
         <div style={styles.cardRow}>
           <div style={styles.visualSide}>
-            <HiOutlineCpuChip size={80} color="#60a5fa" />
+            <img 
+              src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80" 
+              alt="Technical Interview Process" 
+              style={styles.sideImage}
+            />
           </div>
           <div style={styles.contentSide}>
             <h2 style={styles.sectionTitle}>Flexible Interview Ownership</h2>
@@ -90,36 +128,12 @@ export default function ITStaffing() {
 
       {/* FEATURES */}
       <div style={styles.grid}>
-        <FeatureCard
-          icon={<HiOutlineUsers />}
-          title="Bulk Hiring Expertise"
-          desc="Simultaneously manage multiple roles across teams, skills, and locations."
-        />
-        <FeatureCard
-          icon={<HiOutlineClock />}
-          title="4–5 Day SLA Hiring"
-          desc="Time-bound execution with clear daily progress updates to clients."
-        />
-        <FeatureCard
-          icon={<HiOutlineGlobeAlt />}
-          title="Strong Local Talent Pool"
-          desc="Access to city-focused candidates across Bangalore, Hyderabad, Pune & Chennai."
-        />
-        <FeatureCard
-          icon={<HiOutlineShieldCheck />}
-          title="Verified & Reliable Profiles"
-          desc="Experience checks, skill validation, and document verification included."
-        />
-        <FeatureCard
-          icon={<HiOutlinePresentationChartBar />}
-          title="Hiring Visibility"
-          desc="Clear visibility into pipeline status, interviews, and onboarding progress."
-        />
-        <FeatureCard
-          icon={<HiOutlineUserPlus />}
-          title="End-to-End Onboarding"
-          desc="Offer rollout, joining coordination, and documentation handled by us."
-        />
+        <FeatureCard icon={<HiOutlineUsers />} title="Bulk Hiring Expertise" desc="Simultaneously manage multiple roles across teams, skills, and locations." />
+        <FeatureCard icon={<HiOutlineClock />} title="4–5 Day SLA Hiring" desc="Time-bound execution with clear daily progress updates to clients." />
+        <FeatureCard icon={<HiOutlineGlobeAlt />} title="Strong Local Talent Pool" desc="Access to city-focused candidates across Bangalore, Hyderabad, Pune & Chennai." />
+        <FeatureCard icon={<HiOutlineShieldCheck />} title="Verified & Reliable Profiles" desc="Experience checks, skill validation, and document verification included." />
+        <FeatureCard icon={<HiOutlinePresentationChartBar />} title="Hiring Visibility" desc="Clear visibility into pipeline status, interviews, and onboarding progress." />
+        <FeatureCard icon={<HiOutlineUserPlus />} title="End-to-End Onboarding" desc="Offer rollout, joining coordination, and documentation handled by us." />
       </div>
 
       {/* SNAPSHOT METRICS */}
@@ -140,9 +154,7 @@ export default function ITStaffing() {
 
       {/* CTA */}
       <motion.section style={styles.ctaBanner} variants={fadeUp}>
-        <h2 style={styles.ctaTitle}>
-          Need Roles Closed Fast?
-        </h2>
+        <h2 style={styles.ctaTitle}>Need Roles Closed Fast?</h2>
         <button style={styles.whiteBtn}>Start Hiring Today</button>
       </motion.section>
 
@@ -151,14 +163,6 @@ export default function ITStaffing() {
 }
 
 /* SUB COMPONENTS */
-const TrackerNode = ({ step, label, icon, active }) => (
-  <div style={{ ...styles.node, opacity: active ? 1 : 0.4 }}>
-    <div style={styles.nodeCircle}>{icon}</div>
-    <span style={styles.nodeStep}>STEP {step}</span>
-    <span style={styles.nodeLabel}>{label}</span>
-  </div>
-);
-
 const FeatureCard = ({ icon, title, desc }) => (
   <motion.div style={styles.card} whileHover={{ y: -10 }}>
     <div style={styles.cardIcon}>{icon}</div>
@@ -181,10 +185,8 @@ const fadeUp = {
 const styles = {
   page: { background: "#020617", color: "#fff", padding: "80px 8%", fontFamily: "Inter, sans-serif" },
   hero: { textAlign: "center", marginBottom: "100px" },
-  badge: { background: "rgba(59,130,246,0.1)", color: "#3b82f6", padding: "6px 16px", borderRadius: "20px", fontWeight: 700 },
   heroTitle: { fontSize: "4.2rem", fontWeight: 900, margin: "20px 0" },
   blueText: { color: "#3b82f6" },
-  heroSubtitle: { color: "#94a3b8", maxWidth: "800px", margin: "0 auto 40px", fontSize: "1.2rem" },
   heroBtns: { display: "flex", justifyContent: "center", gap: "20px" },
   primaryBtn: { background: "#2563eb", padding: "16px 32px", borderRadius: "12px", color: "#fff", border: "none", fontWeight: 700 },
   secondaryBtn: { background: "transparent", border: "1px solid #1e293b", color: "#fff", padding: "16px 32px", borderRadius: "12px" },
@@ -192,20 +194,26 @@ const styles = {
   wideCard: { background: "rgba(255,255,255,0.02)", borderRadius: "40px", padding: "60px", marginBottom: "60px" },
   cardRow: { display: "flex", gap: "60px", alignItems: "center", flexWrap: "wrap" },
   contentSide: { flex: 1.5 },
-  visualSide: { flex: 0.5, textAlign: "center" },
-  iconBox: { background: "rgba(59,130,246,0.1)", padding: "40px", borderRadius: "50%" },
+  visualSide: { flex: 1, textAlign: "center" },
+  sideImage: { width: "100%", borderRadius: "20px", boxShadow: "0 20px 40px rgba(0,0,0,0.3)" },
 
   sectionTitle: { fontSize: "2.6rem", marginBottom: "20px" },
   text: { color: "#cbd5e1", fontSize: "1.1rem", lineHeight: 1.8 },
 
-  trackerContainer: { textAlign: "center", margin: "100px 0" },
-  trackerHeading: { color: "#3b82f6", fontSize: "1.8rem", marginBottom: "50px" },
-  pipelineFlow: { display: "flex", justifyContent: "center", gap: "20px", flexWrap: "wrap" },
-  node: { textAlign: "center" },
-  nodeCircle: { width: 70, height: 70, borderRadius: "50%", border: "2px solid #3b82f6", display: "flex", alignItems: "center", justifyContent: "center" },
-  nodeStep: { fontSize: "0.7rem", color: "#60a5fa", fontWeight: 800 },
-  nodeLabel: { fontWeight: 600 },
-  arrow: { fontSize: "2rem", color: "#1e293b" },
+  // SPINAL PATH STYLES
+  trackerContainer: { textAlign: "center", margin: "100px 0", position: "relative" },
+  trackerHeading: { fontSize: "2.6rem", marginBottom: "60px" },
+  pathContainer: { position: "relative", maxWidth: "1000px", margin: "0 auto" },
+  spinalLine: { position: "absolute", left: "50%", top: 0, bottom: 0, width: "2px", background: "rgba(59,130,246,0.3)", transform: "translateX(-50%)" },
+  pathItem: { display: "flex", alignItems: "center", marginBottom: "40px", width: "100%" },
+  pathContentBox: { flex: 1, padding: "30px", background: "rgba(255,255,255,0.03)", borderRadius: "20px", textAlign: "left", border: "1px solid rgba(255,255,255,0.05)" },
+  nodeIcon: { fontSize: "2rem", color: "#3b82f6", marginBottom: "10px" },
+  nodeTitle: { fontSize: "1.4rem", marginBottom: "10px" },
+  nodeDesc: { color: "#94a3b8", fontSize: "0.95rem" },
+  nodePointWrapper: { width: "100px", display: "flex", justifyContent: "center", zIndex: 2 },
+  nodePoint: { width: "40px", height: "40px", background: "#3b82f6", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 0 20px rgba(59,130,246,0.5)" },
+  nodeNumber: { fontWeight: 800, fontSize: "0.9rem" },
+  pathSpacer: { flex: 1 },
 
   grid: { display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: "30px", margin: "80px 0" },
   card: { background: "rgba(255,255,255,0.03)", padding: "40px", borderRadius: "30px" },

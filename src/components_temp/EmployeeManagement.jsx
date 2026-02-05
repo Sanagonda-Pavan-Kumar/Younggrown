@@ -12,6 +12,7 @@ import {
   HiOutlineCloudArrowUp,
   HiOutlineLockClosed,
   HiOutlineServerStack,
+  HiOutlineChartBar, // Added for the analytics visual
 } from "react-icons/hi2";
 
 export default function EmployeeManagementSystem() {
@@ -66,12 +67,17 @@ export default function EmployeeManagementSystem() {
               </p>
             </div>
 
+            {/* Added image here as requested */}
             <motion.div
-              style={styles.threeDImageBox}
+              style={{...styles.threeDImageBox, overflow: 'hidden', padding: 0, background: 'none'}}
               whileHover={{ rotateY: -15, rotateX: 8, scale: 1.05 }}
               transition={{ type: "spring", stiffness: 120 }}
             >
-              <HiOutlineRocketLaunch style={styles.mainIcon} />
+              <img 
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80" 
+                alt="Employee Journey" 
+                style={{width: '100%', height: '100%', objectFit: 'cover', borderRadius: 32}}
+              />
             </motion.div>
           </div>
         </motion.div>
@@ -102,31 +108,25 @@ export default function EmployeeManagementSystem() {
           variants={fadeUp}
         >
           <div style={styles.cardRow}>
+            {/* Visualisation added here beside content */}
             <motion.div
-              style={styles.chartContainer}
+              style={{...styles.chartContainer, padding: '20px', background: 'rgba(15, 23, 42, 0.6)'}}
               whileHover={{ scale: 1.03 }}
             >
-              <div style={styles.barGroup}>
-                <motion.div
-                  style={{ ...styles.bar, height: "60%" }}
-                  animate={{ height: ["40%", "70%", "60%"] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                />
-                <motion.div
-                  style={{ ...styles.bar, height: "90%", background: "#fff" }}
-                  animate={{ height: ["65%", "95%", "85%"] }}
-                  transition={{ duration: 2.5, repeat: Infinity }}
-                />
-                <motion.div
-                  style={{ ...styles.bar, height: "45%" }}
-                  animate={{ height: ["30%", "55%", "45%"] }}
-                  transition={{ duration: 3.5, repeat: Infinity }}
-                />
+              <div style={{...styles.barGroup, alignItems: 'flex-end', height: '120px'}}>
+                {[50, 80, 40, 90, 60].map((h, i) => (
+                  <motion.div
+                    key={i}
+                    style={{ ...styles.bar, height: `${h}%`, width: '25px', background: i === 3 ? '#fff' : '#3b82f6' }}
+                    animate={{ height: [`${h-5}%`, `${h+5}%`, `${h}%`] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
+                  />
+                ))}
               </div>
-              <div style={styles.chartLabels}>
-                <span>Headcount</span>
-                <span>Attrition</span>
-                <span>Tenure</span>
+              <div style={{...styles.chartLabels, marginTop: 25}}>
+                <div style={{display: 'flex', alignItems: 'center', gap: 8, color: '#fff'}}>
+                  <HiOutlineChartBar /> Workforce Health: 92%
+                </div>
               </div>
             </motion.div>
 
@@ -176,38 +176,32 @@ export default function EmployeeManagementSystem() {
 const moduleData = [
   {
     title: "Centralized Employee Records",
-    text:
-      "Maintain a single source of truth for personal details, job information, reporting structures, documents, and historical records with role-based access.",
+    text: "Maintain a single source of truth for personal details, job information, reporting structures, documents, and historical records with role-based access.",
     icon: <HiOutlineIdentification />,
   },
   {
     title: "Smart Onboarding Experience",
-    text:
-      "Digital forms, document uploads, policy acknowledgements, and onboarding checklists—completed before day one or in real time.",
+    text: "Digital forms, document uploads, policy acknowledgements, and onboarding checklists—completed before day one or in real time.",
     icon: <HiOutlineCloudArrowUp />,
   },
   {
     title: "Employee Self-Service Portal",
-    text:
-      "Employees can manage profiles, download payslips, view attendance, apply leave, and raise queries independently.",
+    text: "Employees can manage profiles, download payslips, view attendance, apply leave, and raise queries independently.",
     icon: <HiOutlineDevicePhoneMobile />,
   },
   {
     title: "Role & Department Management",
-    text:
-      "Define departments, designations, reporting hierarchies, and track promotions, transfers, and role changes with audit history.",
+    text: "Define departments, designations, reporting hierarchies, and track promotions, transfers, and role changes with audit history.",
     icon: <HiOutlineSquaresPlus />,
   },
   {
     title: "Document & Compliance Management",
-    text:
-      "Digitally manage contracts, ID proofs, certificates, and policies with automated expiry tracking and compliance alerts.",
+    text: "Digitally manage contracts, ID proofs, certificates, and policies with automated expiry tracking and compliance alerts.",
     icon: <HiOutlineDocumentText />,
   },
   {
     title: "Leave & Policy Integration",
-    text:
-      "Seamlessly integrate leave rules, attendance policies, and payroll configurations for accurate and consistent enforcement.",
+    text: "Seamlessly integrate leave rules, attendance policies, and payroll configurations for accurate and consistent enforcement.",
     icon: <HiOutlineShieldCheck />,
   },
 ];

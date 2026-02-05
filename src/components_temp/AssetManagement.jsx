@@ -1,4 +1,14 @@
 import { motion } from "framer-motion";
+import { 
+  HiOutlineCube, 
+  HiOutlineUserGroup, 
+  HiOutlineArrowPath, 
+  HiOutlineShieldCheck, 
+  HiOutlineTrash,
+  HiOutlineChartBar,
+  HiOutlineMagnifyingGlass,
+  HiOutlineCpuChip
+} from "react-icons/hi2";
 
 export default function AssetManagement() {
   return (
@@ -32,22 +42,47 @@ export default function AssetManagement() {
             View Demo
           </motion.button>
         </div>
+
+        {/* Hero Image Added */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.4 }}
+          style={styles.heroImageWrapper}
+        >
+          <img 
+            src="https://images.unsplash.com/photo-1551288049-bb848a4f691f?auto=format&fit=crop&w=1200&q=80" 
+            alt="Dashboard Preview" 
+            style={styles.heroImage}
+          />
+        </motion.div>
       </section>
 
       {/* CENTRALIZED CONTROL */}
       <section style={styles.section}>
-        <motion.div
-          whileHover={{ rotateX: 6, rotateY: -6 }}
-          transition={{ type: "spring", stiffness: 120 }}
-          style={styles.glassCard}
-        >
-          <h2 style={styles.cardTitle}>Centralized Asset Control</h2>
-          <p style={styles.cardText}>
-            Manage IT assets, infrastructure, tools, equipment, and licenses
-            from a single intelligent dashboard. Track ownership, location,
-            utilization, and status with precision.
-          </p>
-        </motion.div>
+        <div style={styles.splitLayout}>
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            whileHover={{ y: -10 }}
+            style={styles.glassCard}
+          >
+            <h2 style={styles.cardTitle}>Centralized Asset Control</h2>
+            <p style={styles.cardText}>
+              Manage IT assets, infrastructure, tools, equipment, and licenses
+              from a single intelligent dashboard. Track ownership, location,
+              utilization, and status with precision.
+            </p>
+          </motion.div>
+          
+          <motion.img 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=600&q=80" 
+            style={styles.sideImage}
+            alt="Hardware Tracking"
+          />
+        </div>
       </section>
 
       {/* ASSET LIFECYCLE */}
@@ -56,20 +91,23 @@ export default function AssetManagement() {
 
         <div style={styles.lifecycle}>
           {[
-            "Procurement",
-            "Assignment",
-            "Active Usage",
-            "Maintenance",
-            "Decommissioning",
+            { label: "Procurement", icon: <HiOutlineCube /> },
+            { label: "Assignment", icon: <HiOutlineUserGroup /> },
+            { label: "Active Usage", icon: <HiOutlineCpuChip /> },
+            { label: "Maintenance", icon: <HiOutlineArrowPath /> },
+            { label: "Decommissioning", icon: <HiOutlineTrash /> },
           ].map((stage, index) => (
             <motion.div
               key={index}
-              whileHover={{ y: -12 }}
-              transition={{ type: "spring", stiffness: 160 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ y: -12, backgroundColor: "rgba(255,255,255,0.08)", borderColor: "#60a5fa" }}
               style={styles.lifecycleCard}
             >
+              <div style={styles.iconBox}>{stage.icon}</div>
               <span style={styles.stepNumber}>0{index + 1}</span>
-              <h4 style={styles.lifecycleTitle}>{stage}</h4>
+              <h4 style={styles.lifecycleTitle}>{stage.label}</h4>
             </motion.div>
           ))}
         </div>
@@ -81,37 +119,20 @@ export default function AssetManagement() {
 
         <div style={styles.featureGrid}>
           {[
-            {
-              title: "Real-Time Tracking",
-              desc: "Live visibility into asset location, usage, and condition across departments.",
-            },
-            {
-              title: "Smart Assignments",
-              desc: "Allocate assets to employees or teams with complete accountability.",
-            },
-            {
-              title: "Maintenance Automation",
-              desc: "Schedule servicing, repairs, and inspections to avoid downtime.",
-            },
-            {
-              title: "Cost & Depreciation",
-              desc: "Monitor asset value, depreciation, and total cost of ownership.",
-            },
-            {
-              title: "Audit & Compliance",
-              desc: "Maintain audit-ready records with full history and access logs.",
-            },
-            {
-              title: "Analytics Dashboard",
-              desc: "Data-driven insights to optimize utilization and reduce losses.",
-            },
+            { title: "Real-Time Tracking", icon: <HiOutlineMagnifyingGlass />, desc: "Live visibility into asset location and condition across departments." },
+            { title: "Smart Assignments", icon: <HiOutlineUserGroup />, desc: "Allocate assets to employees or teams with complete accountability." },
+            { title: "Maintenance Automation", icon: <HiOutlineArrowPath />, desc: "Schedule servicing and inspections to avoid downtime." },
+            { title: "Cost & Depreciation", icon: <HiOutlineChartBar />, desc: "Monitor asset value, depreciation, and total cost of ownership." },
+            { title: "Audit & Compliance", icon: <HiOutlineShieldCheck />, desc: "Maintain audit-ready records with full history and access logs." },
+            { title: "Analytics Dashboard", icon: <HiOutlineChartBar />, desc: "Data-driven insights to optimize utilization and reduce losses." },
           ].map((item, i) => (
             <motion.div
               key={i}
-              whileHover={{ rotateX: 8, rotateY: 8 }}
+              whileHover={{ rotateX: 8, rotateY: 8, boxShadow: "0 20px 40px rgba(37, 99, 235, 0.2)" }}
               transition={{ type: "spring", stiffness: 120 }}
               style={styles.featureCard}
             >
+              <div style={styles.featureIconSmall}>{item.icon}</div>
               <h4 style={styles.featureTitle}>{item.title}</h4>
               <p style={styles.featureDesc}>{item.desc}</p>
             </motion.div>
@@ -130,7 +151,7 @@ export default function AssetManagement() {
           Simplify Asset Control. Maximize Efficiency.
         </motion.h2>
 
-        <motion.button whileHover={{ scale: 1.1 }} style={styles.ctaBtn}>
+        <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} style={styles.ctaBtn}>
           Start Managing Assets
         </motion.button>
       </section>
@@ -146,15 +167,16 @@ const styles = {
     color: "#fff",
     fontFamily: "Inter, sans-serif",
     perspective: "1200px",
+    overflowX: "hidden"
   },
 
   hero: {
-    padding: "120px 24px",
+    padding: "120px 24px 60px",
     textAlign: "center",
   },
 
   heroTitle: {
-    fontSize: "3.8rem",
+    fontSize: "clamp(2.5rem, 6vw, 3.8rem)",
     fontWeight: 900,
     marginBottom: "20px",
   },
@@ -171,6 +193,7 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     gap: "20px",
+    marginBottom: "80px"
   },
 
   primaryBtn: {
@@ -192,9 +215,38 @@ const styles = {
     cursor: "pointer",
   },
 
+  heroImageWrapper: {
+    maxWidth: "1000px",
+    margin: "0 auto",
+    borderRadius: "24px",
+    overflow: "hidden",
+    border: "1px solid rgba(255,255,255,0.1)",
+    boxShadow: "0 50px 100px -20px rgba(0,0,0,0.5)"
+  },
+
+  heroImage: {
+    width: "100%",
+    display: "block"
+  },
+
   section: {
     padding: "100px 8%",
     textAlign: "center",
+  },
+
+  splitLayout: {
+    display: "flex",
+    alignItems: "center",
+    gap: "40px",
+    flexWrap: "wrap",
+    justifyContent: "center"
+  },
+
+  sideImage: {
+    width: "100%",
+    maxWidth: "500px",
+    borderRadius: "24px",
+    boxShadow: "0 20px 50px rgba(0,0,0,0.4)"
   },
 
   glassCard: {
@@ -203,8 +255,8 @@ const styles = {
     backdropFilter: "blur(18px)",
     borderRadius: "32px",
     padding: "60px",
-    maxWidth: "900px",
-    margin: "0 auto",
+    maxWidth: "600px",
+    textAlign: "left",
     boxShadow: "0 30px 80px rgba(0,0,0,0.6)",
     transformStyle: "preserve-3d",
   },
@@ -229,15 +281,23 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     flexWrap: "wrap",
-    gap: "30px",
+    gap: "20px",
   },
 
   lifecycleCard: {
     background: "rgba(255,255,255,0.03)",
     border: "1px solid rgba(255,255,255,0.08)",
     borderRadius: "22px",
-    padding: "40px",
-    width: "220px",
+    padding: "30px",
+    width: "200px",
+    textAlign: "center",
+    transition: "all 0.3s ease"
+  },
+
+  iconBox: {
+    fontSize: "2.5rem",
+    color: "#60a5fa",
+    marginBottom: "15px"
   },
 
   stepNumber: {
@@ -248,12 +308,12 @@ const styles = {
 
   lifecycleTitle: {
     marginTop: "12px",
-    fontSize: "1.2rem",
+    fontSize: "1.1rem",
   },
 
   featureGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))",
+    gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))",
     gap: "30px",
   },
 
@@ -262,7 +322,14 @@ const styles = {
     border: "1px solid rgba(255,255,255,0.08)",
     borderRadius: "26px",
     padding: "40px",
+    textAlign: "left",
     transformStyle: "preserve-3d",
+  },
+
+  featureIconSmall: {
+    fontSize: "2rem",
+    color: "#60a5fa",
+    marginBottom: "20px"
   },
 
   featureTitle: {
