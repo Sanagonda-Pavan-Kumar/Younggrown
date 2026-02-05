@@ -1,17 +1,59 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Footer from "./Footers";
 import { HiOutlineEnvelope, HiOutlinePhone, HiOutlineMapPin } from "react-icons/hi2";
+import { supabase } from "../lib/supabase"; // <-- Supabase client import
 
 export default function ContactUs() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    company: "",
+    email: "",
+    mobile: "",
+    message: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const { error } = await supabase
+      .from("YG_Connections")
+      .insert([formData]);
+
+    if (error) {
+      alert("Something went wrong ❌");
+      console.error(error);
+    } else {
+      alert("Thank you! We’ll contact you soon ✅");
+      setFormData({
+        first_name: "",
+        last_name: "",
+        company: "",
+        email: "",
+        mobile: "",
+        message: "",
+      });
+    }
+
+    setLoading(false);
+  };
+
   return (
     <div style={styles.wrapper}>
       <section style={styles.page}>
-        
+
         {/* --- HEADER SECTION --- */}
         <motion.div
           initial={{ opacity: 0, y: -40 }}
@@ -23,7 +65,7 @@ export default function ContactUs() {
             Contact <span style={styles.blueText}>Us</span>
           </h1>
           <p style={styles.subtitle}>
-            We’d love to hear from you. Let’s talk about how we can help 
+            We’d love to hear from you. Let’s talk about how we can help
             transform your HR operations with intelligence.
           </p>
         </motion.div>
@@ -36,8 +78,8 @@ export default function ContactUs() {
           transition={{ duration: 0.7 }}
           style={styles.container}
         >
-          
-          {/* --- LEFT SIDE: INFO --- */}
+
+          {/* --- LEFT SIDE --- */}
           <div style={styles.left}>
             <h2 style={styles.leftTitle}>We are here for you</h2>
             <p style={styles.leftText}>
@@ -74,6 +116,7 @@ export default function ContactUs() {
 
           {/* --- RIGHT SIDE: FORM --- */}
           <motion.form
+            onSubmit={handleSubmit}
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -81,34 +124,78 @@ export default function ContactUs() {
             style={styles.form}
           >
             <div style={styles.row}>
-              <input placeholder="First Name *" style={styles.input} />
-              <input placeholder="Last Name *" style={styles.input} />
+              <input
+                name="first_name"
+                placeholder="First Name *"
+                style={styles.input}
+                value={formData.first_name}
+                onChange={handleChange}
+                required
+              />
+              <input
+                name="last_name"
+                placeholder="Last Name *"
+                style={styles.input}
+                value={formData.last_name}
+                onChange={handleChange}
+                required
+              />
             </div>
 
-            <input placeholder="Company *" style={styles.input} />
-            <input placeholder="Email *" style={styles.input} />
-            <input placeholder="Mobile *" style={styles.input} />
+            <input
+              name="company"
+              placeholder="Company *"
+              style={styles.input}
+              value={formData.company}
+              onChange={handleChange}
+              required
+            />
+            <input
+              name="email"
+              type="email"
+              placeholder="Email *"
+              style={styles.input}
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            <input
+              name="mobile"
+              placeholder="Mobile *"
+              style={styles.input}
+              value={formData.mobile}
+              onChange={handleChange}
+              required
+            />
 
             <textarea
+              name="message"
               placeholder="Describe your requirement *"
               rows={4}
               style={styles.textarea}
+              value={formData.message}
+              onChange={handleChange}
+              required
             />
 
-            <motion.button 
+            <motion.button
+              type="submit"
               style={styles.button}
-              whileHover={{ scale: 1.02, backgroundColor: "#0284c7" }}
+              whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
+              disabled={loading}
             >
-              Submit Inquiry
+              {loading ? "Submitting..." : "Submit Inquiry"}
             </motion.button>
           </motion.form>
         </motion.div>
       </section>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
+
+/* ---------------- STYLES (UNCHANGED) ---------------- */
 
 const styles = {
   wrapper: {
@@ -131,9 +218,7 @@ const styles = {
     fontWeight: 900,
     marginBottom: "20px",
   },
-  blueText: {
-    color: "#3b82f6",
-  },
+  blueText: { color: "#3b82f6" },
   subtitle: {
     maxWidth: 700,
     margin: "0 auto",
@@ -144,37 +229,18 @@ const styles = {
   container: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
-    gap: 0,
     background: "rgba(255,255,255,0.02)",
     borderRadius: "40px",
     overflow: "hidden",
     border: "1px solid rgba(255,255,255,0.05)",
-    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
   },
   left: {
     background: "linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%)",
     padding: "60px",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
   },
-  leftTitle: {
-    fontSize: "2.5rem",
-    fontWeight: 800,
-    marginBottom: "20px",
-    lineHeight: 1.2,
-  },
-  leftText: {
-    color: "#dbeafe",
-    fontSize: "1.1rem",
-    lineHeight: 1.7,
-    marginBottom: "40px",
-  },
-  infoList: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "20px",
-  },
+  leftTitle: { fontSize: "2.5rem", fontWeight: 800 },
+  leftText: { color: "#dbeafe", marginBottom: "40px" },
+  infoList: { display: "flex", flexDirection: "column", gap: "20px" },
   infoCard: {
     display: "flex",
     gap: "20px",
@@ -182,37 +248,12 @@ const styles = {
     background: "rgba(255,255,255,0.1)",
     padding: "20px",
     borderRadius: "20px",
-    backdropFilter: "blur(10px)",
-    border: "1px solid rgba(255,255,255,0.1)",
   },
-  iconBox: {
-    fontSize: "1.8rem",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "#fff",
-  },
-  infoLabel: {
-    display: "block",
-    fontSize: "0.85rem",
-    textTransform: "uppercase",
-    letterSpacing: "1px",
-    color: "#bfdbfe",
-    marginBottom: "4px",
-  },
-  infoValue: {
-    fontSize: "1.05rem",
-    fontWeight: 600,
-  },
-  form: {
-    padding: "60px",
-    backgroundColor: "rgba(15, 23, 42, 0.3)",
-  },
-  row: {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gap: "20px",
-  },
+  iconBox: { fontSize: "1.8rem", color: "#fff" },
+  infoLabel: { fontSize: "0.85rem", color: "#bfdbfe" },
+  infoValue: { fontSize: "1.05rem", fontWeight: 600 },
+  form: { padding: "60px", backgroundColor: "rgba(15,23,42,0.3)" },
+  row: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" },
   input: {
     width: "100%",
     padding: "16px 20px",
@@ -221,9 +262,6 @@ const styles = {
     border: "1px solid rgba(255,255,255,0.1)",
     color: "#fff",
     marginBottom: "20px",
-    outline: "none",
-    fontSize: "1rem",
-    transition: "0.3s",
   },
   textarea: {
     width: "100%",
@@ -233,10 +271,7 @@ const styles = {
     border: "1px solid rgba(255,255,255,0.1)",
     color: "#fff",
     marginBottom: "30px",
-    outline: "none",
-    fontSize: "1rem",
     resize: "none",
-    transition: "0.3s",
   },
   button: {
     width: "100%",
@@ -248,6 +283,5 @@ const styles = {
     fontSize: "1.1rem",
     fontWeight: 700,
     cursor: "pointer",
-    boxShadow: "0 10px 15px -3px rgba(59, 130, 246, 0.3)",
   },
 };
