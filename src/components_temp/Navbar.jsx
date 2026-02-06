@@ -1,22 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  FiChevronDown,
-  FiMenu,
-  FiX,
-  FiUsers,
-  FiUserPlus,
-  FiClock,
-  FiDollarSign,
-  FiTrendingUp,
-  FiBarChart2,
-  FiBriefcase,
-  FiCpu,
-  FiAward,
-  FiActivity,
-  FiHeadphones,
-  FiLayers,
-  FiGlobe,
+  FiChevronDown, FiMenu, FiX, FiUsers, FiUserPlus, FiClock,
+  FiDollarSign, FiTrendingUp, FiBarChart2, FiBriefcase,
+  FiCpu, FiAward, FiActivity, FiHeadphones, FiLayers, FiGlobe,
 } from "react-icons/fi";
 
 export default function Navbar() {
@@ -26,15 +13,14 @@ export default function Navbar() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
   const [scrolled, setScrolled] = useState(false);
 
+  // Ref to track the 5-second timer
+  const timeoutRef = useRef(null);
+
   // Monitor screen size and scroll position
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 1024);
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("resize", handleResize);
@@ -45,7 +31,23 @@ export default function Navbar() {
     };
   }, []);
 
+  // Logic to handle opening the dropdown
+  const handleMouseEnter = (menuName) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current); // Cancel the 5s timer if user moves back in
+    }
+    setOpenDropdown(menuName);
+  };
+
+  // Logic to handle the 5-second delay before closing
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setOpenDropdown(null);
+    }, 200); // 5000 milliseconds = 5 seconds
+  };
+
   const goTo = (path) => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
     navigate(path);
     setOpenDropdown(null);
     setMobileOpen(false);
@@ -57,7 +59,10 @@ export default function Navbar() {
     backgroundColor: scrolled ? "rgba(2, 6, 23, 0.8)" : "transparent",
     backdropFilter: scrolled ? "blur(12px)" : "none",
     borderBottom: scrolled ? "1px solid rgba(255, 255, 255, 0.1)" : "1px solid transparent",
-    padding: scrolled ? "12px 8%" : "20px 8%", // Smooth height shrink on scroll
+    padding: scrolled ? "12px 8%" : "20px 8%", 
+    position: scrolled ? "fixed" : "sticky", // Fixed works best for scrolled states
+    top: 0,
+    width: "100%",
   };
 
   return (
@@ -71,13 +76,14 @@ export default function Navbar() {
         <div style={styles.links}>
           <span style={styles.link} onClick={() => goTo("/")}>Home</span>
 
+          {/* Product Dropdown */}
           <div
             style={styles.dropdown}
-            onMouseEnter={() => setOpenDropdown("product")}
-            onMouseLeave={() => setOpenDropdown(null)}
+            onMouseEnter={() => handleMouseEnter("product")}
+            onMouseLeave={handleMouseLeave}
           >
             <span style={styles.link}>
-              Product <FiChevronDown />
+              Product <FiChevronDown style={{transform: openDropdown === 'product' ? 'rotate(180deg)' : 'none', transition: '0.3s'}} />
             </span>
 
             {openDropdown === "product" && (
@@ -88,6 +94,14 @@ export default function Navbar() {
                       key={item.label}
                       style={styles.menuItem}
                       onClick={() => goTo(item.path)}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = "rgba(59, 130, 246, 0.1)";
+                        e.currentTarget.style.color = "#FFFFFF";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = "transparent";
+                        e.currentTarget.style.color = "#94a3b8";
+                      }}
                     >
                       <item.icon style={{ color: "#3b82f6" }} /> {item.label}
                     </div>
@@ -97,13 +111,14 @@ export default function Navbar() {
             )}
           </div>
 
+          {/* Services Dropdown */}
           <div
             style={styles.dropdown}
-            onMouseEnter={() => setOpenDropdown("services")}
-            onMouseLeave={() => setOpenDropdown(null)}
+            onMouseEnter={() => handleMouseEnter("services")}
+            onMouseLeave={handleMouseLeave}
           >
             <span style={styles.link}>
-              Services <FiChevronDown />
+              Services <FiChevronDown style={{transform: openDropdown === 'services' ? 'rotate(180deg)' : 'none', transition: '0.3s'}} />
             </span>
 
             {openDropdown === "services" && (
@@ -113,6 +128,14 @@ export default function Navbar() {
                     key={item.label}
                     style={styles.menuItem}
                     onClick={() => goTo(item.path)}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = "rgba(59, 130, 246, 0.1)";
+                      e.currentTarget.style.color = "#FFFFFF";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = "transparent";
+                      e.currentTarget.style.color = "#94a3b8";
+                    }}
                   >
                     <item.icon style={{ color: "#3b82f6" }} /> {item.label}
                   </div>
@@ -149,6 +172,12 @@ export default function Navbar() {
             <span style={styles.mobileNavLabel}>Products</span>
             <div style={styles.mobileSubGrid}>
               {productItems.map((item) => (
+                <span key={item.label} style={styles.mobileSubLink} onClick={() => goTo(item.path)}>{item.label}</span>
+              ))}
+            </div>
+            <span style={styles.mobileNavLabel}>Services</span>
+            <div style={styles.mobileSubGrid}>
+              {serviceItems.map((item) => (
                 <span key={item.label} style={styles.mobileSubLink} onClick={() => goTo(item.path)}>{item.label}</span>
               ))}
             </div>
@@ -189,11 +218,10 @@ const styles = {
     alignItems: "center",
     justifyContent: "space-between",
     color: "#fff",
-    position: "sticky",
-    top: 0,
     zIndex: 1000,
-    transition: "all 0.3s ease", // Animates the glassmorphism and height change
+    transition: "all 0.3s ease",
     fontFamily: "'Inter', sans-serif",
+    boxSizing: "border-box",
   },
   logo: {
     fontSize: "1.5rem",
@@ -219,10 +247,11 @@ const styles = {
   },
   dropdown: {
     position: "relative",
+    padding: "10px 0", // Buffer to prevent small gaps causing mouseLeave
   },
   menu: {
     position: "absolute",
-    top: "140%",
+    top: "100%",
     left: "-50px",
     backgroundColor: "rgba(15, 23, 42, 0.95)",
     backdropFilter: "blur(10px)",
@@ -248,7 +277,6 @@ const styles = {
     fontSize: "0.9rem",
     color: "#94a3b8",
     transition: "0.2s all",
-    ":hover": { backgroundColor: "rgba(59, 130, 246, 0.1)", color: "#FFFFFF" }
   },
   menuBtn: {
     background: "none",

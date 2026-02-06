@@ -24,21 +24,28 @@ import ITStaffing from "./components_temp/ServicesNav/ITStaffing";
 import NonTechStaffing from "./components_temp/ServicesNav/NonTechStaffing";
 import Training from "./components_temp/ServicesNav/Training";
 import Freelancing from "./components_temp/ServicesNav/Freelancing";
-
+import FreelancerForm from "./components_temp/ServicesNav/Freelancerform";
 // --- SCROLL TO TOP UTILITY ---
 function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // Standard window scroll reset
-    window.scrollTo(0, 0);
-    // Backup for document element
-    document.documentElement.scrollTo(0, 0);
+    // Disable browser scroll restoration
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    // Wait one frame so layout + animations mount
+    requestAnimationFrame(() => {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    });
+
   }, [pathname]);
 
   return null;
 }
-
 export default function App() {
   return (
     <BrowserRouter>
@@ -70,6 +77,7 @@ export default function App() {
           <Route path="/NonTechStaffing" element={<NonTechStaffing/>}/>
           <Route path="/Training" element={<Training/>}/>
           <Route path="/Freelancing" element={<Freelancing/>}/>
+          <Route path="/FreelancerForm" element={<FreelancerForm />} />
         </Routes>
       </main>
     </BrowserRouter>

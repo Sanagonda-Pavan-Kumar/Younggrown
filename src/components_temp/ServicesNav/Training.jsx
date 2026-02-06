@@ -1,65 +1,88 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import {
   HiOutlineAcademicCap,
-  HiOutlineClock,
   HiOutlineUserGroup,
   HiOutlineSparkles,
   HiOutlineClipboardDocumentCheck,
   HiOutlineRocketLaunch,
   HiOutlineLightBulb,
   HiOutlineDevicePhoneMobile,
+  HiOutlineArrowRight,
 } from "react-icons/hi2";
+import Footers from "../Footers"; 
+import Section from "../Section";
+
+/* --- HAND-DRAWN UNDERLINE EFFECT --- */
+const Underline = ({ color = "#3b82f6", width = "100%" }) => (
+  <div style={{ position: 'relative', width: width, marginTop: '4px' }}>
+    <motion.svg
+      width="100%" height="12" viewBox="0 0 300 12" fill="none"
+      xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+    >
+      <motion.path
+        d="M2 9.5C50 4.5 150 1.5 298 7.5"
+        stroke={color} strokeWidth="6" strokeLinecap="round"
+        initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }}
+        viewport={{ once: true }} transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+      />
+    </motion.svg>
+  </div>
+);
 
 export default function Training() {
+  const navigate = useNavigate();
+
   useEffect(() => {
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (
     <div style={styles.page}>
-      {/* BACKGROUND DECORATION */}
       <div style={styles.bgGlow} />
 
       {/* HERO SECTION */}
-      <motion.section
-        style={styles.hero}
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-      
-        <h1 style={styles.heroTitle}>
-          Workforce Training.
-          <br />
-          <span style={styles.blueText}>Built for the Future.</span>
-        </h1>
+      <Section style={styles.hero}>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
+          <h1 style={styles.heroTitle}>
+            Workforce Training. <br />
+            <span style={styles.gradientText}>Built for the Future.</span>
+          </h1>
+          <div style={{ width: '280px', margin: '0 auto 30px' }}>
+             <Underline width="100%" />
+          </div>
+          <p style={styles.heroSubtitle}>
+            We are currently designing structured, industry-aligned training
+            programs to upskill workforce talent and improve on-ground
+            performance.
+          </p>
+        </motion.div>
+      </Section>
 
-        <p style={styles.heroSubtitle}>
-          We are currently designing structured, industry-aligned training
-          programs to upskill workforce talent and improve on-ground
-          performance.
-        </p>
-      </motion.section>
-
-      {/* VISION & IMAGE SECTION */}
-      <motion.section
-        style={styles.wideCard}
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
+      {/* WHY TRAINING MATTERS */}
+      <Section style={styles.wideCard}>
         <div style={styles.flexRow}>
           <div style={styles.textSide}>
-            <h2 style={styles.sectionTitle}>Why Training Matters</h2>
-            <p style={styles.text}>
+            <div style={styles.centeredHeader}>
+              <h2 style={{ ...styles.sectionTitle, marginBottom: "0px" }}>
+                Why Training Matters
+              </h2>
+              <div style={{ width: '220px' }}>
+                <Underline width="100%" />
+              </div>
+            </div>
+            
+            <p style={{ ...styles.text, textAlign: 'center', marginTop: '30px' }}>
               Skill gaps directly impact productivity, quality, and retention. Our
               upcoming training modules are being built to bridge this gap through
               practical, role-based learning.
             </p>
-            <p style={styles.text}>
+            <p style={{ ...styles.text, textAlign: 'center' }}>
               These programs will focus on real-world execution — not theory —
               enabling workers to perform confidently from day one.
             </p>
@@ -76,71 +99,55 @@ export default function Training() {
             </div>
           </div>
         </div>
-      </motion.section>
+      </Section>
 
-      {/* PLANNED MODULES GRID */}
-      <section style={styles.gridContainer}>
-        <h2 style={{ ...styles.sectionTitle, textAlign: "center", marginBottom: "50px" }}>
-          Planned Training Modules
-        </h2>
+      {/* PLANNED MODULES GRID - CENTERED VERSION */}
+      <Section style={styles.gridContainer}>
+        <div style={styles.centeredHeader}>
+          <h2 style={{ ...styles.sectionTitle, marginBottom: "0px" }}>
+            Planned Training Modules
+          </h2>
+          <div style={{ width: '240px' }}>
+            <Underline width="100%" />
+          </div>
+        </div>
 
-        <motion.div
-          style={styles.grid}
+        <motion.div 
+          style={styles.grid} 
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: true }} 
           variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
         >
-          <FeatureCard
-            icon={<HiOutlineAcademicCap />}
-            title="Onboarding & Induction"
-            desc="Structured onboarding programs for smooth workforce integration."
-          />
-          <FeatureCard
-            icon={<HiOutlineUserGroup />}
-            title="Role-Based Skill Training"
-            desc="Practical training aligned with specific job roles and industries."
-          />
-          <FeatureCard
-            icon={<HiOutlineClipboardDocumentCheck />}
-            title="Compliance & Safety"
-            desc="Mandatory safety, compliance, and workplace behavior training."
-          />
-          <FeatureCard
-            icon={<HiOutlineSparkles />}
-            title="Soft Skills Development"
-            desc="Communication, discipline, and professional conduct programs."
-          />
+          <FeatureCard icon={<HiOutlineAcademicCap />} title="Onboarding & Induction" desc="Structured onboarding programs for smooth workforce integration." />
+          <FeatureCard icon={<HiOutlineUserGroup />} title="Role-Based Skill Training" desc="Practical training aligned with specific job roles and industries." />
+          <FeatureCard icon={<HiOutlineClipboardDocumentCheck />} title="Compliance & Safety" desc="Mandatory safety, compliance, and workplace behavior training." />
+          <FeatureCard icon={<HiOutlineSparkles />} title="Soft Skills Development" desc="Communication, discipline, and professional conduct programs." />
         </motion.div>
-      </section>
+      </Section>
 
-      {/* TRAINING METHODOLOGY (New Visual Section) */}
-      <motion.section
-        style={styles.wideCard}
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
+      {/* METHODOLOGY SECTION */}
+      <Section style={styles.wideCard}>
         <div style={{...styles.flexRow, flexDirection: 'row-reverse'}}>
           <div style={styles.textSide}>
-            <h2 style={styles.sectionTitle}>Our Methodology</h2>
-            <div style={styles.methodList}>
-                <MethodItem 
-                    icon={<HiOutlineLightBulb />} 
-                    title="Case-Study Learning" 
-                    desc="Learning through actual on-field scenarios." 
-                />
-                <MethodItem 
-                    icon={<HiOutlineDevicePhoneMobile />} 
-                    title="Hybrid Modules" 
-                    desc="Mix of digital content and physical workshops." 
-                />
-                <MethodItem 
-                    icon={<HiOutlineRocketLaunch />} 
-                    title="Performance Tracking" 
-                    desc="Post-training evaluation for continuous improvement." 
-                />
+            <div style={styles.centeredHeader}>
+              <h2 style={{ ...styles.sectionTitle, marginBottom: "0px" }}>
+                Our Methodology
+              </h2>
+              <div style={{ width: '180px' }}>
+                <Underline width="100%" />
+              </div>
+            </div>
+            
+            
+
+[Image of ADDIE instructional design model]
+
+
+            <div style={{ ...styles.methodList, marginTop: '40px' }}>
+                <MethodItem icon={<HiOutlineLightBulb />} title="Case-Study Learning" desc="Learning through actual on-field scenarios." />
+                <MethodItem icon={<HiOutlineDevicePhoneMobile />} title="Hybrid Modules" desc="Mix of digital content and physical workshops." />
+                <MethodItem icon={<HiOutlineRocketLaunch />} title="Performance Tracking" desc="Post-training evaluation for continuous improvement." />
             </div>
           </div>
           
@@ -155,62 +162,47 @@ export default function Training() {
             </div>
           </div>
         </div>
-      </motion.section>
-
-      {/* STATUS & TIMELINE */}
-      <motion.section
-        style={styles.wideCard}
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <h2 style={styles.sectionTitle}>Current Status</h2>
-
-        <div style={styles.statusRow}>
-          <StatusItem icon={<HiOutlineClock />} text="Curriculum Planning in Progress" />
-          <StatusItem icon={<HiOutlineRocketLaunch />} text="Pilot Programs Launching Soon" />
-        </div>
-
-        <p style={{ ...styles.text, marginTop: "30px" }}>
-          We are actively working with industry experts and operational teams to
-          roll out these training initiatives in upcoming phases.
-        </p>
-      </motion.section>
+      </Section>
 
       {/* CTA SECTION */}
-      <motion.section
-        style={styles.cta}
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <div style={styles.ctaContent}>
-          <h2 style={styles.ctaTitle}>Training Programs Coming Soon</h2>
-          <p style={styles.ctaSub}>
-            Designed to upskill, retain, and empower the workforce of tomorrow.
-          </p>
-          <motion.button
-            whileHover={{ scale: 1.05, boxShadow: "0 10px 20px rgba(0,0,0,0.2)" }}
-            whileTap={{ scale: 0.95 }}
-            style={styles.whiteBtn}
+      <Section style={{ padding: "80px 0 120px" }}>
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true }} 
+            style={styles.ctaInner}
           >
-            Stay Updated
-          </motion.button>
-        </div>
-      </motion.section>
+            <h2 style={styles.ctaTitle}>
+              Programs <span style={styles.blueText}>Coming Soon</span>
+              <div style={{ width: '220px', margin: '10px auto 0' }}>
+                <Underline width="100%" />
+              </div>
+            </h2>
+            <p style={styles.ctaSub}>
+              Designed to upskill, retain, and empower the workforce of tomorrow. 
+              Be the first to know when we launch our pilot sessions.
+            </p>
+            <motion.button 
+              whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }} 
+              whileTap={{ scale: 0.95 }}
+              style={styles.ctaBtn} onClick={() => navigate("/ContactUs")}
+            >
+              Stay Updated <HiOutlineArrowRight size={20} style={{ marginLeft: 10 }} />
+            </motion.button>
+          </motion.div>
+      </Section>
+
+      <Footers />
     </div>
   );
 }
 
-/* ---------- SUB COMPONENTS ---------- */
-
+/* --- SUB COMPONENTS --- */
 const FeatureCard = ({ icon, title, desc }) => (
   <motion.div
     variants={fadeUp}
-    whileHover={{ y: -12, backgroundColor: "rgba(30, 41, 59, 0.5)", borderColor: "rgba(59, 130, 246, 0.5)" }}
     style={styles.card}
+    whileHover={{ y: -12, borderColor: '#3b82f6', background: 'rgba(30, 41, 59, 0.4)' }}
   >
     <div style={styles.cardIcon}>{icon}</div>
     <h3 style={styles.cardTitle}>{title}</h3>
@@ -219,161 +211,111 @@ const FeatureCard = ({ icon, title, desc }) => (
   </motion.div>
 );
 
-const StatusItem = ({ icon, text }) => (
-  <motion.div
-    whileHover={{ scale: 1.05, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
-    style={styles.statusItem}
+const MethodItem = ({ icon, title, desc }) => (
+  <motion.div 
+    whileHover={{ background: "rgba(59, 130, 246, 0.05)" }}
+    style={styles.methodItem}
   >
-    <div style={styles.statusIcon}>{icon}</div>
-    <span style={{ fontWeight: 600 }}>{text}</span>
+    <div style={styles.methodIconBox}>{icon}</div>
+    <div>
+      <h4 style={{ margin: 0, fontSize: "1.1rem", color: "#f8fafc", fontWeight: 700 }}>{title}</h4>
+      <p style={{ margin: "4px 0 0", color: "#94a3b8", fontSize: "0.95rem", lineHeight: 1.5 }}>{desc}</p>
+    </div>
   </motion.div>
 );
 
-const MethodItem = ({ icon, title, desc }) => (
-    <div style={styles.methodItem}>
-        <div style={styles.methodIconBox}>{icon}</div>
-        <div>
-            <h4 style={{ margin: 0, fontSize: "18px", color: "#f8fafc" }}>{title}</h4>
-            <p style={{ margin: "4px 0 0", color: "#94a3b8", fontSize: "14px" }}>{desc}</p>
-        </div>
-    </div>
-);
-
-/* ---------- ANIMATIONS ---------- */
-
+/* --- ANIMATIONS & STYLES --- */
 const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-  },
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
 const stagger = {
   hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
+  visible: { transition: { staggerChildren: 0.15 } },
 };
 
-/* ---------- STYLES ---------- */
-
 const styles = {
-  page: { background: "#020617", color: "#e5e7eb", overflowX: "hidden", position: "relative", fontFamily: "'Inter', sans-serif" },
+  page: {  color: "#e5e7eb", overflowX: "hidden", fontFamily: "'Inter', sans-serif" },
   
   bgGlow: {
-    position: "absolute",
-    top: 0,
-    left: "50%",
-    transform: "translateX(-50%)",
-    width: "100%",
-    height: "800px",
-    background: "radial-gradient(circle at 50% 0%, rgba(59,130,246,0.1) 0%, transparent 70%)",
-    pointerEvents: "none",
-    zIndex: 0,
+    position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)",
+    width: "100%", height: "800px",
+    background: "radial-gradient(circle at 50% 0%, rgba(59,130,246,0.12) 0%, transparent 70%)",
+    pointerEvents: "none", zIndex: 0,
   },
 
-  hero: { padding: "160px 8% 100px", textAlign: "center", position: "relative", zIndex: 1 },
-  badge: {
-    display: "inline-block",
-    padding: "8px 16px",
-    borderRadius: "20px",
-    background: "rgba(30, 41, 59, 0.8)",
-    border: "1px solid rgba(59, 130, 246, 0.3)",
-    marginBottom: "24px",
-    fontSize: "14px",
-    fontWeight: 600,
-    color: "#60a5fa",
-  },
-  heroTitle: { fontSize: "clamp(40px, 8vw, 72px)", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.02em" },
-  blueText: { background: "linear-gradient(90deg, #3b82f6, #60a5fa)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" },
-  heroSubtitle: { maxWidth: "720px", margin: "30px auto 0", color: "#94a3b8", fontSize: "1.15rem", lineHeight: 1.7 },
+  hero: { padding: "160px 0 100px", textAlign: "center", position: "relative", zIndex: 1 },
+  heroTitle: { fontSize: "clamp(2.5rem, 8vw, 4.5rem)", fontWeight: 900, lineHeight: 1.1, letterSpacing: '-0.04em', color: '#fff' },
+  gradientText: { background: "linear-gradient(90deg, #3b82f6, #93c5fd)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" },
+  blueText: { color: "#3b82f6" },
+  heroSubtitle: { maxWidth: "720px", margin: "25px auto 0", color: "#94a3b8", fontSize: '1.2rem', lineHeight: 1.6 },
 
-  wideCard: {
-    margin: "0 8% 100px",
-    padding: "80px 60px",
-    borderRadius: "40px",
-    border: "1px solid rgba(255, 255, 255, 0.05)",
-    background: "rgba(15, 23, 42, 0.4)",
-    backdropFilter: "blur(12px)",
+  centeredHeader: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    textAlign: 'center',
+    width: '100%'
   },
 
-  flexRow: { display: "flex", gap: "60px", alignItems: "center", flexWrap: "wrap" },
-  textSide: { flex: 1.2, minWidth: "320px" },
-  imageSide: { flex: 0.8, minWidth: "320px", perspective: "1200px" },
-  
+  wideCard: { 
+    background: "rgba(255,255,255,0.02)", borderRadius: "48px", padding: "80px 60px", 
+    border: "1px solid rgba(255,255,255,0.05)", backdropFilter: 'blur(10px)'
+  },
+  flexRow: { display: "flex", gap: "80px", alignItems: "center", flexWrap: "wrap" },
+  textSide: { flex: 1.2, minWidth: '320px' },
+  imageSide: { flex: 0.8, minWidth: '320px', perspective: '1200px' },
   imagePerspective: { 
-    transform: "rotateY(-10deg) rotateX(5deg)", 
-    position: "relative",
-    borderRadius: "24px",
-    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.7)"
+    transform: "rotateY(-10deg) rotateX(5deg)", borderRadius: '32px', overflow: 'hidden', 
+    boxShadow: '0 30px 60px rgba(0,0,0,0.6)', border: '1px solid rgba(255,255,255,0.1)'
   },
-  sideImage: { width: "100%", height: "450px", objectFit: "cover", borderRadius: "24px" },
-  imageOverlay: { 
-    position: "absolute", top: 0, left: 0, right: 0, bottom: 0, 
-    background: "linear-gradient(to bottom right, rgba(59,130,246,0.1), transparent)",
-    borderRadius: "24px"
-  },
-
-  sectionTitle: { fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 700, marginBottom: "25px", color: "#f8fafc", letterSpacing: "-0.01em" },
-  text: { color: "#94a3b8", lineHeight: 1.8, fontSize: "17px", marginBottom: "20px" },
-
-  gridContainer: { padding: "40px 8% 120px" },
-  grid: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "30px" },
+  sideImage: { width: '100%', height: '450px', objectFit: 'cover' },
+  imageOverlay: { position: "absolute", top: 0, left: 0, right: 0, bottom: 0, background: "linear-gradient(to bottom right, rgba(59,130,246,0.1), transparent)" },
   
-  card: {
-    border: "1px solid rgba(255, 255, 255, 0.08)",
-    borderRadius: "32px",
-    padding: "45px 35px",
-    background: "rgba(30, 41, 59, 0.25)",
-    position: "relative",
-    overflow: "hidden",
-    transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+  sectionTitle: { fontSize: "clamp(2.2rem, 5vw, 3rem)", fontWeight: 800, color: '#fff', letterSpacing: '-0.02em' },
+  text: { color: "#94a3b8", lineHeight: 1.8, fontSize: '1.15rem', marginBottom: '20px' },
+
+  gridContainer: { 
+    padding: "100px 8%",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center' // Centers the title and grid
   },
-  cardIcon: { fontSize: "42px", color: "#3b82f6", marginBottom: "20px" },
-  cardTitle: { fontSize: "22px", fontWeight: 700, color: "#f1f5f9" },
-  cardDesc: { color: "#94a3b8", marginTop: "12px", lineHeight: 1.6 },
+  grid: { 
+    display: "grid", 
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", 
+    gap: "30px",
+    width: '100%',
+    maxWidth: '1200px', // Prevents cards from spreading too wide
+    justifyContent: 'center', // Centers cards if row is not full
+    marginTop: '50px'
+  },
+  card: { 
+    border: "1px solid rgba(255,255,255,0.05)", borderRadius: "32px", padding: "50px 40px", 
+    background: 'rgba(30, 41, 59, 0.2)', transition: '0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+    position: 'relative', overflow: 'hidden',
+    height: '100%' // Ensures equal height
+  },
+  cardIcon: { fontSize: "48px", color: "#3b82f6", marginBottom: '25px' },
+  cardTitle: { fontSize: '1.5rem', fontWeight: 800, marginBottom: '12px', color: '#fff' },
+  cardDesc: { color: '#64748b', lineHeight: 1.7, fontSize: '1rem' },
   cardGlow: { position: "absolute", bottom: "-20px", right: "-20px", width: "100px", height: "100px", background: "rgba(59,130,246,0.05)", filter: "blur(30px)", borderRadius: "50%" },
 
-  methodList: { display: "flex", flexDirection: "column", gap: "25px", marginTop: "30px" },
-  methodItem: { display: "flex", gap: "20px", alignItems: "center" },
-  methodIconBox: { width: "50px", height: "50px", borderRadius: "12px", background: "rgba(59,130,246,0.1)", display: "flex", alignItems: "center", justifyContent: "center", color: "#3b82f6", fontSize: "24px" },
+  methodList: { display: "flex", flexDirection: "column", gap: "10px" },
+  methodItem: { 
+    display: "flex", gap: "20px", alignItems: "center", 
+    padding: "20px", borderRadius: "20px", transition: "all 0.3s ease" 
+  },
+  methodIconBox: { width: "60px", height: "60px", borderRadius: "16px", background: "rgba(59,130,246,0.1)", display: "flex", alignItems: "center", justifyContent: "center", color: "#3b82f6", fontSize: "28px" },
 
-  statusRow: { display: "flex", gap: "25px", flexWrap: "wrap" },
-  statusItem: {
-    display: "flex",
-    gap: "15px",
-    alignItems: "center",
-    border: "1px solid rgba(59, 130, 246, 0.25)",
-    padding: "20px 30px",
-    borderRadius: "20px",
-    background: "rgba(2, 6, 23, 0.5)",
-    transition: "all 0.3s ease",
+  ctaInner: {
+    background: "linear-gradient(145deg, #020617 0%, #0b3b6f 50%, #020617 100%)",
+    padding: "120px 40px", borderRadius: "56px", textAlign: 'center',
+    border: "1px solid rgba(59, 130, 246, 0.3)", boxShadow: "0 40px 100px rgba(0,0,0,0.5)",
+    margin: '0 8%', position: 'relative'
   },
-  statusIcon: { color: "#60a5fa", fontSize: "24px" },
-
-  cta: { padding: "0 8% 120px" },
-  ctaContent: {
-    background: "linear-gradient(135deg,#1e3a8a,#2563eb)",
-    padding: "100px 40px",
-    borderRadius: "50px",
-    textAlign: "center",
-    boxShadow: "0 30px 60px -15px rgba(37, 99, 235, 0.4)",
-  },
-  ctaTitle: { fontSize: "clamp(32px, 5vw, 48px)", fontWeight: 800, marginBottom: "20px", letterSpacing: "-0.02em" },
-  ctaSub: { color: "#bfdbfe", marginBottom: "40px", fontSize: "1.1rem" },
-  whiteBtn: {
-    background: "#fff",
-    color: "#2563eb",
-    padding: "20px 50px",
-    borderRadius: "18px",
-    border: "none",
-    fontWeight: 700,
-    fontSize: "18px",
-    cursor: "pointer",
-    transition: "all 0.3s ease",
-  },
+  ctaTitle: { fontSize: 'clamp(2.5rem, 6vw, 3.8rem)', fontWeight: 900, marginBottom: 20, color: '#fff', letterSpacing: '-0.03em' },
+  ctaSub: { fontSize: '1.25rem', color: '#94a3b8', marginBottom: 50, maxWidth: '750px', margin: '0 auto 50px', lineHeight: 1.6 },
+  ctaBtn: { padding: '22px 56px', background: '#3b82f6', color: '#fff', border: 'none', borderRadius: '16px', fontWeight: 800, fontSize: '1.15rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center' }
 };

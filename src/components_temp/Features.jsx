@@ -3,10 +3,11 @@ export default function Features() {
     <div
       style={{
         
-        padding: "120px 20px",
-      
+       padding: "40px 20px 100px",
+    
         textAlign: "center",
       }}
+    
     >
      
       <div

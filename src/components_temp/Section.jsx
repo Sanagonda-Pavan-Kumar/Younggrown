@@ -31,14 +31,23 @@ export default function Section({
 
 
 const styles = {
+  // section: {
+  //   width: "100%",
+  //   display: "flex",
+  //   justifyContent: "center",  
+  //   alignItems: "center",      
+  //   padding: "100px 24px",
+  //   boxSizing: "border-box",
+  // },
   section: {
     width: "100%",
     display: "flex",
     justifyContent: "center",  
-    alignItems: "center",      
-    padding: "100px 24px",
+    alignItems: "flex-start",
+    padding: "60px 24px",
     boxSizing: "border-box",
   },
+
   content: {
     width: "100%",
        

@@ -92,7 +92,7 @@ export default function ContactUs() {
                 <div style={styles.iconBox}><HiOutlineEnvelope /></div>
                 <div>
                   <strong style={styles.infoLabel}>Email Us</strong>
-                  <p style={styles.infoValue}>hello@yourcompany.com</p>
+                  <p style={styles.infoValue}>info.youngrownai@gmail.com</p>
                 </div>
               </div>
 
@@ -100,7 +100,7 @@ export default function ContactUs() {
                 <div style={styles.iconBox}><HiOutlinePhone /></div>
                 <div>
                   <strong style={styles.infoLabel}>Contact</strong>
-                  <p style={styles.infoValue}>+91 78620 34603</p>
+                  <p style={styles.infoValue}>+91 7569751097</p>
                 </div>
               </div>
 

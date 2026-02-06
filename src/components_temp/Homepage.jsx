@@ -47,7 +47,7 @@ const CTASection = () => {
         </p>
         
         {/* Wrap button in Link to navigate to Contact Us */}
-        <Link to="/contact" style={{ textDecoration: 'none' }}>
+        <Link to="/contactUs" style={{ textDecoration: 'none' }}>
           <motion.button
             style={styles.bigButton}
             whileHover={{ 

@@ -1,7 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom"; // Import the hook
 
 function Hero() {
+  const navigate = useNavigate(); // Initialize the navigate function
+
   return (
     <section style={styles.heroContainer}>
       <motion.div 
@@ -27,6 +30,7 @@ function Hero() {
               style={styles.btnPrimary}
               whileHover={{ scale: 1.05, backgroundColor: "#2563eb" }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => navigate("/")} // Navigate to home
             >
               Get Started
             </motion.button>
@@ -34,6 +38,7 @@ function Hero() {
               style={styles.btnOutline}
               whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.05)" }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => navigate("/ContactUs")} // Navigate to ContactUs
             >
               Book a Demo
             </motion.button>
@@ -63,12 +68,23 @@ const fadeUp = {
 };
 
 const styles = {
+  // heroContainer: {
+  //   display: "flex",
+  //   alignItems: "center",
+  //   justifyContent: "space-between",
+  //   padding: "120px 8%",
+  //   minHeight: "80vh",
+  //   gap: "60px",
+  //   flexWrap: "wrap",
+  //   fontFamily: "'Inter', sans-serif",
+  //   overflow: "hidden",
+  // },
   heroContainer: {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: "120px 8%",
-    minHeight: "80vh",
+    minHeight: "auto",
+padding: "40px 8% 40px",   
     gap: "60px",
     flexWrap: "wrap",
     fontFamily: "'Inter', sans-serif",

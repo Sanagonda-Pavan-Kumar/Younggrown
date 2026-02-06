@@ -1,33 +1,43 @@
 import React, { useEffect } from "react";
 import Footers from './Footers'
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom"; // Added navigate hook
 import { 
   HiOutlineCpuChip, HiOutlineUserGroup, HiOutlineEnvelope, 
   HiOutlineChartBar, HiOutlineShieldCheck, HiOutlineArrowRightCircle,
   HiOutlineAdjustmentsHorizontal, HiOutlineClipboardDocumentList,
   HiOutlineCheckBadge, HiOutlineIdentification
 } from "react-icons/hi2";
+import Section from "./Section";
 
 export default function RecruitmentPlatform() {
+  const navigate = useNavigate(); // Initialize navigation
+
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   return (
     <div>
     <motion.div style={styles.page} initial="hidden" animate="visible" variants={pageVariants}>
       
-      {/* --- HERO SECTION --- */}
-      <motion.section style={styles.hero} variants={fadeUp}>
+<Section>     <motion.section style={styles.hero} variants={fadeUp}>
         <h1 style={styles.heroTitle}>AI-Powered Hiring & <br/><span style={styles.blueText}>Recruitment Platform</span></h1>
         <p style={styles.heroSubtitle}>
           Hire faster with intelligence. Hire better with confidence. Build a faster, fairer, and fully automated hiring experience.
         </p>
         <div style={styles.heroBtns}>
-          <button style={styles.primaryBtn}>Get Started</button>
-          <button style={styles.secondaryBtn}>View Demo</button>
+          {/* Navigates to Home */}
+          <button style={styles.primaryBtn} onClick={() => navigate("/")}>
+            Get Started
+          </button>
+          {/* Navigates to Contact Us */}
+          <button style={styles.secondaryBtn} onClick={() => navigate("/contactus")}>
+            View Demo
+          </button>
         </div>
-      </motion.section>
+      </motion.section></Section> 
 
-      {/* --- UNIFIED PIPELINE (WIDE CARD) --- */}
+
+<Section>
       <motion.div style={styles.wideCard} variants={fadeUp}>
         <div style={styles.cardRow}>
           <div style={styles.contentSide}>
@@ -39,13 +49,18 @@ export default function RecruitmentPlatform() {
             </p>
           </div>
           <div style={styles.visualSide}>
-             <HiOutlineClipboardDocumentList size={80} color="#3b82f6" />
+             <motion.img 
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" 
+              alt="Hiring Pipeline Dashboard" 
+              style={styles.responsiveImage}
+              whileHover={{ scale: 1.05 }}
+             />
           </div>
         </div>
       </motion.div>
+</Section>
 
-      {/* --- LIVE STATUS TRACKER (THE "HOW IT WORKS") --- */}
-      
+      <Section>
       <motion.div style={styles.trackerContainer} variants={fadeUp}>
         <h3 style={styles.trackerHeading}>The Hybrid Intelligence Flow</h3>
         <div style={styles.pipelineFlow}>
@@ -58,8 +73,9 @@ export default function RecruitmentPlatform() {
           <TrackerNode step="04" label="Onboarding" icon={<HiOutlineCheckBadge/>} />
         </div>
       </motion.div>
+</Section>
 
-      {/* --- FEATURE GRID --- */}
+     <Section>
       <div style={styles.grid}>
         <FeatureCard 
           icon={<HiOutlineCpuChip/>} title="AI-Powered ATS" 
@@ -86,12 +102,18 @@ export default function RecruitmentPlatform() {
           desc="Enterprise-grade data protection with encryption and full audit logs for regulatory compliance."
         />
       </div>
+</Section>
 
-      {/* --- SEAMLESS HANDOVER SECTION --- */}
+     <Section>
       <motion.div style={styles.wideCard} variants={fadeUp}>
         <div style={styles.cardRow}>
           <div style={styles.visualSide}>
-             <HiOutlineArrowRightCircle size={80} color="#60a5fa" />
+             <motion.img 
+              src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80" 
+              alt="Seamless Onboarding Workflow" 
+              style={styles.responsiveImage}
+              whileHover={{ scale: 1.05 }}
+             />
           </div>
           <div style={styles.contentSide}>
             <h2 style={styles.sectionTitle}>Seamless Handover to Onboarding</h2>
@@ -102,13 +124,16 @@ export default function RecruitmentPlatform() {
           </div>
         </div>
       </motion.div>
+</Section>
 
-      {/* --- FINAL CTA --- */}
+   <Section>
       <motion.section style={styles.ctaBanner} variants={fadeUp}>
         <h2 style={styles.ctaTitle}>Recruit smarter with AI. <br/>Decide better with humans.</h2>
-        <button style={styles.whiteBtn}>Build Your Faster Pipeline</button>
+        <button style={styles.whiteBtn} onClick={() => navigate("/contactus")}>
+            Build Your Faster Pipeline
+        </button>
       </motion.section>
-
+</Section>
     </motion.div>
     <Footers/>
     </div>
@@ -138,7 +163,7 @@ const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, tra
 
 // --- STYLES ---
 const styles = {
-  page: { backgroundColor: "#020617", color: "#fff", padding: "80px 8%", fontFamily: "'Inter', sans-serif" },
+  page: {  color: "#fff", padding: "80px 8%", fontFamily: "'Inter', sans-serif" },
   hero: { textAlign: "center", marginBottom: "100px" },
   badge: { background: "rgba(59, 130, 246, 0.1)", color: "#3b82f6", padding: "6px 16px", borderRadius: "20px", fontSize: "0.8rem", fontWeight: 700, marginBottom: "20px", display: "inline-block" },
   heroTitle: { fontSize: "4rem", fontWeight: 900, lineHeight: 1.1, marginBottom: "25px" },
@@ -148,10 +173,11 @@ const styles = {
   primaryBtn: { background: "#2563eb", color: "#fff", border: "none", padding: "16px 32px", borderRadius: "12px", fontWeight: 700, cursor: "pointer" },
   secondaryBtn: { background: "transparent", color: "#fff", border: "1px solid #1e293b", padding: "16px 32px", borderRadius: "12px", cursor: "pointer" },
   
-  wideCard: { background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: "40px", padding: "60px", marginBottom: "40px" },
+  wideCard: { background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: "40px", padding: "60px", marginBottom: "40px", overflow: "hidden" },
   cardRow: { display: "flex", alignItems: "center", gap: "60px", flexWrap: "wrap" },
   contentSide: { flex: 1.5 },
-  visualSide: { flex: 0.5, display: "flex", justifyContent: "center" },
+  visualSide: { flex: 1, display: "flex", justifyContent: "center" },
+  responsiveImage: { width: "100%", height: "auto", borderRadius: "24px", boxShadow: "0 20px 40px rgba(0,0,0,0.3)", transition: "transform 0.3s ease" },
   sectionTitle: { fontSize: "2.5rem", marginBottom: "20px", fontWeight: 700 },
   text: { fontSize: "1.1rem", color: "#cbd5e1", lineHeight: 1.8 },
 
@@ -170,7 +196,7 @@ const styles = {
   cardTitle: { fontSize: "1.4rem", marginBottom: "15px", fontWeight: 600 },
   cardDesc: { color: "#94a3b8", lineHeight: 1.6 },
 
-  ctaBanner: { textAlign: "center", background: "linear-gradient(135deg, #1e3a8a, #2563eb)", padding: "100px 40px", borderRadius: "50px" },
+  ctaBanner: { textAlign: "center", background: "linear-gradient(145deg, #020617 0%, #0b3b6f 50%, #020617 100%)", padding: "100px 40px", borderRadius: "50px" },
   ctaTitle: { fontSize: "3rem", fontWeight: 800, marginBottom: "30px" },
   whiteBtn: { background: "#fff", color: "#2563eb", border: "none", padding: "18px 45px", borderRadius: "15px", fontWeight: 800, fontSize: "1.1rem", cursor: "pointer" }
 };
