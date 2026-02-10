@@ -144,6 +144,49 @@ export default function Navbar() {
             )}
           </div>
 
+
+
+          {/* Resources Dropdown */}
+<div
+  style={styles.dropdown}
+  onMouseEnter={() => handleMouseEnter("resources")}
+  onMouseLeave={handleMouseLeave}
+>
+  <span style={styles.link}>
+    Resources{" "}
+    <FiChevronDown
+      style={{
+        transform: openDropdown === "resources" ? "rotate(180deg)" : "none",
+        transition: "0.3s",
+      }}
+    />
+  </span>
+
+  {openDropdown === "resources" && (
+    <div style={styles.menu}>
+      {resourceItems.map((item) => (
+        <div
+          key={item.label}
+          style={styles.menuItem}
+          onClick={() => goTo(item.path)}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor =
+              "rgba(59, 130, 246, 0.1)";
+            e.currentTarget.style.color = "#FFFFFF";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = "transparent";
+            e.currentTarget.style.color = "#94a3b8";
+          }}
+        >
+          <item.icon style={{ color: "#3b82f6" }} /> {item.label}
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+
+
           <span style={styles.link} onClick={() => goTo("/about")}>About</span>
           <span style={styles.link} onClick={() => goTo("/careers")}>Careers</span>
           <span style={styles.link} onClick={() => goTo("/contactus")}>Contact</span>
@@ -161,7 +204,7 @@ export default function Navbar() {
       {mobileOpen && (
         <div style={styles.mobileMenu}>
           <div style={styles.mobileHeader}>
-            <span style={styles.logo}>Younggrown</span>
+            <span style={styles.logo}>Youngrown</span>
             <button style={styles.closeBtn} onClick={() => setMobileOpen(false)}>
               <FiX size={28} />
             </button>
@@ -181,6 +224,22 @@ export default function Navbar() {
                 <span key={item.label} style={styles.mobileSubLink} onClick={() => goTo(item.path)}>{item.label}</span>
               ))}
             </div>
+            
+
+
+            <span style={styles.mobileNavLabel}>Resources</span>
+          <div style={styles.mobileSubGrid}>
+          {resourceItems.map((item) => (
+    <span
+      key={item.label}
+      style={styles.mobileSubLink}
+      onClick={() => goTo(item.path)}
+    >
+      {item.label}
+    </span>
+  ))}
+</div>
+
             <span style={styles.mobileNavLink} onClick={() => goTo("/about")}>About</span>
             <span style={styles.mobileNavLink} onClick={() => goTo("/careers")}>Careers</span>
             <span style={styles.mobileNavLink} onClick={() => goTo("/contactus")}>Contact</span>
@@ -210,6 +269,15 @@ const serviceItems = [
   { label: "Non-IT Staffing", icon: FiLayers, path: "/NonTechStaffing" },
   { label: "Training", icon: FiAward, path: "/Training" },
   { label: "Freelancing", icon: FiGlobe, path: "/Freelancing" },
+];
+
+
+const resourceItems = [
+  { label: "Blogs", icon: FiBarChart2, path: "/blogs" },
+  { label: "Case Studies", icon: FiBriefcase, path: "/casestudies" },
+   { label: "AI For HR", icon: FiCpu, path: "/aiforhr" },
+  { label: "Simplified HR", icon: FiLayers, path: "/simplifiedhr" },
+   { label: "HRMS Deck", icon: FiAward, path: "/hrmsdeck" },
 ];
 
 const styles = {
