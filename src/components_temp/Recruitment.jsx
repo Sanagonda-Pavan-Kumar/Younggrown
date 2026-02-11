@@ -50,7 +50,7 @@ export default function RecruitmentPlatform() {
           </div>
           <div style={styles.visualSide}>
              <motion.img 
-              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" 
+              src="/src/Assets/about 1.avif" 
               alt="Hiring Pipeline Dashboard" 
               style={styles.responsiveImage}
               whileHover={{ scale: 1.05 }}
@@ -109,7 +109,7 @@ export default function RecruitmentPlatform() {
         <div style={styles.cardRow}>
           <div style={styles.visualSide}>
              <motion.img 
-              src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80" 
+              src="/src/Assets/onb.jpg" 
               alt="Seamless Onboarding Workflow" 
               style={styles.responsiveImage}
               whileHover={{ scale: 1.05 }}

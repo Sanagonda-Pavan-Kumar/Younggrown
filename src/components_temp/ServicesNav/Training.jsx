@@ -91,7 +91,7 @@ export default function Training() {
           <div style={styles.imageSide}>
             <div style={styles.imagePerspective}>
                <img 
-                src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80" 
+                src="/src/Assets/tain.jpg" 
                 alt="Corporate Training Session" 
                 style={styles.sideImage}
                />

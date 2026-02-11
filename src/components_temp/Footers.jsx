@@ -18,14 +18,14 @@ export default function Footer() {
       <div style={styles.container}>
         {/* Brand Section */}
         <div style={styles.brandSection}>
-          <h2 style={styles.logo} onClick={scrollToTop}>Younggrown</h2>
+          <h2 style={styles.logo} onClick={scrollToTop}>Youngrown</h2>
           <p style={styles.brandText}>
             Elevating HR experiences through intelligent automation and 
             people-centric technology. Grow faster, manage better.
           </p>
           <div style={styles.socialLinks}>
             <a href="#" style={styles.socialIcon}><FiLinkedin /></a>
-            <a href="#" style={styles.socialIcon}><FiTwitter /></a>
+            <a href="https://x.com/YoungrownAi" style={styles.socialIcon}><FiTwitter /></a>
             <a href="#" style={styles.socialIcon}><FiInstagram /></a>
           </div>
         </div>
@@ -81,8 +81,8 @@ export default function Footer() {
         <div style={styles.contactSection}>
           <h4 style={styles.heading}>Reach Us</h4>
           <div style={styles.contactCard}>
-            <p style={styles.contactItem}><FiMail style={styles.icon}/> hello@younggrown.com</p>
-            <p style={styles.contactItem}><FiPhone style={styles.icon}/> +91 78620 34603</p>
+            <p style={styles.contactItem}><FiMail style={styles.icon}/> youngrownai@gmail.com</p>
+            <p style={styles.contactItem}><FiPhone style={styles.icon}/> +91 7569751097</p>
             <p style={styles.contactItem}><FiMapPin style={styles.icon}/> Hyderabad, India</p>
           </div>
          

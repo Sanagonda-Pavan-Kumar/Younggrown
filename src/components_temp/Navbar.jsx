@@ -68,7 +68,7 @@ export default function Navbar() {
   return (
     <nav style={navStyle}>
       <span style={styles.logo} onClick={() => goTo("/")}>
-        Younggrown
+        youngrownai
       </span>
 
       {/* DESKTOP LINKS */}

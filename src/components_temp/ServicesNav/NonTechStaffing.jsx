@@ -98,7 +98,7 @@ export default function NonTechStaffing() {
           <div style={styles.visualSide}>
             <div style={styles.imageWrapper}>
               <img 
-                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80" 
+                src="/src/Assets/nonit.avif"
                 alt="Operational Team" 
                 style={styles.sideImage} 
               />

@@ -1,6 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Footers from "./Footers";
+import dashboardGif from "../assets/04.gif";
+
 import {
   HiOutlineClock,
   HiOutlineUserGroup,
@@ -71,11 +73,12 @@ export default function AttendanceManagement() {
 
           <div style={styles.content}>
             <motion.img 
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" 
+              src={dashboardGif} 
               alt="Workforce Activity Monitoring" 
               style={styles.sideImage}
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
+
             />
             <h3 style={styles.contentTitle}>
               Live Command <span style={styles.blueText}>Center</span>
@@ -146,7 +149,7 @@ export default function AttendanceManagement() {
             </div>
             <div style={styles.securityVisualSide}>
               <img 
-                src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80" 
+                src="/src/Assets/att sec.jpg" 
                 alt="Security" 
                 style={styles.securityImage}
               />
@@ -263,4 +266,6 @@ const styles = {
   ctaTitle: { fontSize: "3.5rem", fontWeight: 900, color: "#fff" },
   ctaText: { marginTop: 20, fontSize: "1.2rem", color: "#dbeafe" },
   ctaBtn: { marginTop: 40, padding: "18px 45px", borderRadius: 12, fontWeight: 800, border: "none", cursor: "pointer", background: "#fff", color: "#1e40af" },
+
+
 };

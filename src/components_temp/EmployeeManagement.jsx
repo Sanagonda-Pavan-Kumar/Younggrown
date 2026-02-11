@@ -88,7 +88,7 @@ export default function EmployeeManagementSystem() {
                 transition={{ type: "spring", stiffness: 120 }}
               >
                 <img 
-                  src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80" 
+                  src="/src/Assets/empL.png" 
                   alt="Employee Journey" 
                   style={{width: '100%', height: '100%', objectFit: 'cover', borderRadius: 32}}
                 />

@@ -1,67 +1,97 @@
-import React, { useEffect } from "react";
-import { motion } from "framer-motion";
-import Footers from "../Footers";
-import Section from "../Section";
-
 export default function CaseStudies() {
-  useEffect(() => window.scrollTo(0, 0), []);
-
   return (
     <div style={styles.page}>
-      <Section style={styles.hero}>
-        <motion.h1 style={styles.title}>
-          Real Results. <br />
-          <span style={styles.blue}>Real Impact.</span>
-        </motion.h1>
-        <p style={styles.sub}>
-          Explore how organizations use Younggrown to simplify HR, accelerate
-          hiring, and improve workforce outcomes.
-        </p>
-      </Section>
+      <h1 style={styles.title}>Case Studies</h1>
+      <p style={styles.subtitle}>
+        Real-world examples of how organizations improved HR efficiency,
+        compliance, and employee experience using modern HR solutions.
+      </p>
 
-      <Section>
+      <div style={styles.container}>
+        {/* Card 1 */}
         <div style={styles.card}>
-          <h2>Mid-Size IT Firm – Faster Hiring</h2>
+          <img
+            src="https://images.unsplash.com/photo-1581093448798-9bafb14524f9"
+            alt="IT Company"
+            style={styles.image}
+          />
+          <h3>IT Services Company</h3>
           <p>
-            Reduced time-to-hire by <strong>42%</strong> using AI-powered screening
-            and centralized recruitment workflows.
+            Streamlined recruitment and onboarding processes, reducing
+            time-to-hire by <strong>45%</strong> and improving candidate quality.
           </p>
         </div>
 
+        {/* Card 2 */}
         <div style={styles.card}>
-          <h2>Manufacturing Company – Payroll Accuracy</h2>
+          <img
+            src="https://images.unsplash.com/photo-1560264418-81f01e5cfb28"
+            alt="Manufacturing"
+            style={styles.image}
+          />
+          <h3>Manufacturing Enterprise</h3>
           <p>
-            Achieved <strong>100% payroll compliance</strong> with automated
-            attendance and statutory calculations.
+            Automated payroll and compliance workflows, achieving
+            <strong> 99% payroll accuracy</strong> and zero statutory delays.
           </p>
         </div>
 
+        {/* Card 3 */}
         <div style={styles.card}>
-          <h2>Startup Scale-Up – HR Simplification</h2>
+          <img
+            src="https://images.unsplash.com/photo-1580910051073-5c3685f7be95"
+            alt="Healthcare"
+            style={styles.image}
+          />
+          <h3>Healthcare Organization</h3>
           <p>
-            Replaced 5 disconnected tools with one unified HRMS, improving HR
-            efficiency and employee satisfaction.
+            Improved employee engagement and retention by
+            <strong> 22%</strong> through performance analytics and feedback tools.
           </p>
         </div>
-      </Section>
-
-      <Footers />
+      </div>
     </div>
   );
 }
 
 const styles = {
-  page: { color: "#e5e7eb", fontFamily: "'Inter', sans-serif" },
-  hero: { padding: "140px 0 80px", textAlign: "center" },
-  title: { fontSize: "clamp(2.5rem, 6vw, 4rem)", fontWeight: 800 },
-  blue: { color: "#3b82f6" },
-  sub: { maxWidth: 700, margin: "20px auto", color: "#94a3b8", fontSize: "1.1rem" },
+  page: {
+    padding: "120px 20px 60px",
+    color: "#fff",
+    textAlign: "center",
+  },
+  title: {
+    fontSize: "2.6rem",
+    fontWeight: 700,
+  },
+  subtitle: {
+    maxWidth: "700px",
+    margin: "16px auto 40px",
+    color: "#cbd5e1",
+  },
+
+  /* ⭐ KEY PART – NOT FULL WIDTH */
+  container: {
+    maxWidth: "1100px",
+    margin: "0 auto",
+    display: "flex",
+    gap: "30px",
+    justifyContent: "center",
+    flexWrap: "wrap",
+  },
+
   card: {
-    background: "rgba(255,255,255,0.03)",
-    padding: 40,
-    borderRadius: 24,
-    marginBottom: 30,
-    border: "1px solid rgba(255,255,255,0.05)",
+    width: "320px",
+    background: "rgba(15,23,42,0.75)",
+    borderRadius: "16px",
+    padding: "20px",
+    textAlign: "left",
+    border: "1px solid rgba(255,255,255,0.1)",
+  },
+
+  image: {
+    width: "100%",
+    borderRadius: "12px",
+    marginBottom: "14px",
   },
 };
-
