@@ -25,13 +25,19 @@ import NonTechStaffing from "./components_temp/ServicesNav/NonTechStaffing";
 import Training from "./components_temp/ServicesNav/Training";
 import Freelancing from "./components_temp/ServicesNav/Freelancing";
 import FreelancerForm from "./components_temp/ServicesNav/Freelancerform";
-import Blogs from "./components_temp/Resources/Blogs";
+// import Blogs from "./components_temp/Resources/Blogs";
 import CaseStudies from "./components_temp/Resources/CaseStudies";
 import SimplifiedHR from "./components_temp/Resources/SimplifiedHR";
 import AIforHR from "./components_temp/Resources/AIforHR";
 import HRMSDeck from "./components_temp/Resources/HRMSdeck";
-// import AIForHR from "./components_temp/Resources/AIForHR";
-// import HRMSDeck from "./components_temp/Resources/HRMSDeck";
+
+import Blogspage from "./components_temp/Blogspage/Blogs";
+import Blogs1 from "./components_temp/Blogspage/Blogs1";
+import Blogs2 from "./components_temp/Blogspage/Blogs2";
+import Blogs3 from "./components_temp/Blogspage/Blogs3";
+
+
+
 
 
 
@@ -91,12 +97,17 @@ export default function App() {
           <Route path="/FreelancerForm" element={<FreelancerForm />} />
 
          
-          <Route path="/blogs" element={<Blogs />} />
+          {/* <Route path="/blogs" element={<Blogs />} /> */}
           <Route path="/casestudies" element={<CaseStudies />} />
           <Route path="/aiforhr" element={<AIforHR/>}/>
         <Route path="/simplifiedhr" element={<SimplifiedHR />} />
         <Route path="/hrmsdeck" element={<HRMSDeck/>}/>
 
+
+       <Route path="/blogs" element={<Blogspage />} />
+        <Route path="/bloghr2026" element={<Blogs1 />} />
+        <Route path="/blogaihr" element={<Blogs2 />} />
+        <Route path="/bloghrsaas" element={<Blogs3 />} />
         </Routes>
       </main>
     </BrowserRouter>
