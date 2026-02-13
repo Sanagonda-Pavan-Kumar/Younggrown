@@ -5,6 +5,7 @@ import {
   FiDollarSign, FiTrendingUp, FiBarChart2, FiBriefcase,
   FiCpu, FiAward, FiActivity, FiHeadphones, FiLayers, FiGlobe,
 } from "react-icons/fi";
+import { Radius } from "lucide-react";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -67,9 +68,25 @@ export default function Navbar() {
 
   return (
     <nav style={navStyle}>
-      <span style={styles.logo} onClick={() => goTo("/")}>
-        youngrownai
-      </span>
+      {/* <span style={styles.logo}   className="logo1" onClick={() => goTo("/")}>
+       
+        <img src="/src/Assets/red1.jpeg" alt="" height={100} width={100} />
+      </span> */}
+
+
+    {/* <nav style={navStyle}> */}
+  <span
+    style={styles.logoWrapper}
+    className="logo1"
+    onClick={() => goTo("/")}
+  >
+    <img
+      src="/src/Assets/red1.jpeg"
+      alt="YoungGrownai Logo"
+      style={styles.logoImage}
+    />
+  </span>
+
 
       {/* DESKTOP LINKS */}
       {!isMobile && (
@@ -297,6 +314,7 @@ const styles = {
     cursor: "pointer",
     letterSpacing: "-0.02em",
     color: "#FFFFFF",
+    Radius: "50%",
   },
   links: {
     display: "flex",
@@ -397,8 +415,33 @@ const styles = {
     paddingBottom: "20px",
     borderBottom: "1px solid rgba(255,255,255,0.05)",
   },
+ 
   mobileSubLink: {
     fontSize: "0.9rem",
     color: "#94a3b8",
   },
+
+
+  logoWrapper: {
+  width: "70px",
+  height: "70px",
+  borderRadius: "50%",
+  overflow: "hidden",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  cursor: "pointer",
+  transition: "all 0.3s ease",
+
+},
+
+logoImage: {
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  borderRadius: "50%",
+
+},
+
+
 };

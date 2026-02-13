@@ -90,7 +90,7 @@ export default function EmployeeManagementSystem() {
                 <img 
                   src="/src/Assets/empL.png" 
                   alt="Employee Journey" 
-                  style={{width: '100%', height: '100%', objectFit: 'cover', borderRadius: 32}}
+                  style={{width: '100%', height: '100%', objectFit: "contain", borderRadius: 32}}
                 />
               </motion.div>
             </div>
