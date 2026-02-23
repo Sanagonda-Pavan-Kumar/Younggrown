@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Section from "./Section";
 import AboutUs from "./AboutUs";
-
+import Footers from "./Footers"
 export default function AboutUsPage() {
   useEffect(() => {
     window.scrollTo({
@@ -13,6 +13,7 @@ export default function AboutUsPage() {
   return (
     <Section>
       <AboutUs />
+  
     </Section>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-
+import Footers from './Footers'
 export default function AboutUs() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -113,10 +113,13 @@ export default function AboutUs() {
                 create sustainable workplace solutions.
               </p>
             </div>
+        
           </div>
         </motion.div>
       </motion.section>
+        <Footers/>
     </div>
+    
   );
 }
 

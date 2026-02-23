@@ -9,57 +9,72 @@ import hrsaas from "../../Assets/blg3.avif";
 const Blogs = () => {
   return (
     <>
-      <div style={styles.section}>
-        <h2 style={styles.heading}>Insights & Resources</h2>
+      <div style={styles.wrapper}>
+        <motion.section
+          style={styles.section}
+          initial="hidden"
+          animate="visible"
+          variants={pageVariants}
+        >
+          <motion.h2 style={styles.heading} variants={fadeUp}>
+            Insights & <span style={styles.blueText}>Resources</span>
+          </motion.h2>
 
-        <div style={styles.column}>
+          <div style={styles.column}>
 
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <Link to="/bloghr2026" style={styles.card}>
-              <img src={hr2026} alt="HR 2026" style={styles.image} />
-              <div style={styles.cardContent}>
-                <h3>HR in 2026</h3>
-                <p>How People, Technology, and Work Have Truly Changed</p>
-              </div>
-            </Link>
-          </motion.div>
+            {/* BLOG 1 */}
+            <motion.div variants={fadeUp} whileHover={{ y: -8 }}>
+              <Link to="/bloghr2026" style={styles.card}>
+                <div style={styles.imageFrame}>
+                  <img src={hr2026} alt="HR 2026" style={styles.image} />
+                  <div style={styles.imageOverlay} />
+                </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <Link to="/blogaihr" style={styles.card}>
-              <img src={aihr} alt="AI in HR" style={styles.image} />
-              <div style={styles.cardContent}>
-                <h3>AI in HR</h3>
-                <p>Transforming Workforce Management with Intelligence</p>
-              </div>
-            </Link>
-          </motion.div>
+                <div style={styles.cardContent}>
+                  <h3 style={styles.cardTitle}>HR in 2026</h3>
+                  <p style={styles.cardDesc}>
+                    How People, Technology, and Work Have Truly Changed
+                  </p>
+                </div>
+              </Link>
+            </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <Link to="/bloghrsaas" style={styles.card}>
-              <img src={hrsaas} alt="HR SaaS" style={styles.image} />
-              <div style={styles.cardContent}>
-                <h3>Growth of HR SaaS</h3>
-                <p>Why HR Software Is Shaping the Future of Work</p>
-              </div>
-            </Link>
-          </motion.div>
+            {/* BLOG 2 */}
+            <motion.div variants={fadeUp} whileHover={{ y: -8 }}>
+              <Link to="/blogaihr" style={styles.card}>
+                <div style={styles.imageFrame}>
+                  <img src={aihr} alt="AI in HR" style={styles.image} />
+                  <div style={styles.imageOverlay} />
+                </div>
 
-        </div>
+                <div style={styles.cardContent}>
+                  <h3 style={styles.cardTitle}>AI in HR</h3>
+                  <p style={styles.cardDesc}>
+                    Transforming Workforce Management with Intelligence
+                  </p>
+                </div>
+              </Link>
+            </motion.div>
+
+            {/* BLOG 3 */}
+            <motion.div variants={fadeUp} whileHover={{ y: -8 }}>
+              <Link to="/bloghrsaas" style={styles.card}>
+                <div style={styles.imageFrame}>
+                  <img src={hrsaas} alt="HR SaaS" style={styles.image} />
+                  <div style={styles.imageOverlay} />
+                </div>
+
+                <div style={styles.cardContent}>
+                  <h3 style={styles.cardTitle}>Growth of HR SaaS</h3>
+                  <p style={styles.cardDesc}>
+                    Why HR Software Is Shaping the Future of Work
+                  </p>
+                </div>
+              </Link>
+            </motion.div>
+
+          </div>
+        </motion.section>
       </div>
 
       <Footers />
@@ -67,9 +82,52 @@ const Blogs = () => {
   );
 };
 
+export default Blogs;
+
+/* ---------------- ANIMATIONS ---------------- */
+
+const pageVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 },
+  },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6 },
+  },
+};
+
+/* ---------------- STYLES ---------------- */
+
 const styles = {
-  section: { padding: "80px 10%" },
-  heading: { textAlign: "center", fontSize: "36px", marginBottom: "50px" },
+  wrapper: {
+    minHeight: "100vh",
+  },
+
+  section: {
+    padding: "80px 8%",
+    color: "#fff",
+    fontFamily: "'Inter', sans-serif",
+    maxWidth: "1400px",
+    margin: "0 auto",
+  },
+
+  heading: {
+    textAlign: "center",
+    fontSize: "2.8rem",
+    fontWeight: 700,
+    marginBottom: "60px",
+  },
+
+  blueText: {
+    color: "#3b82f6",
+  },
 
   column: {
     display: "flex",
@@ -80,24 +138,54 @@ const styles = {
   card: {
     display: "flex",
     alignItems: "center",
-    gap: "30px",
-    background: "#fff",
-    borderRadius: "15px",
+    gap: "40px",
+    background: "rgba(255,255,255,0.03)", // SAME AS ABOUT PAGE
+    border: "1px solid rgba(255,255,255,0.05)",
+    borderRadius: "30px",
     textDecoration: "none",
-    color: "#000",
-    boxShadow: "0 8px 25px rgba(0,0,0,0.08)",
+    color: "#fff",
+    padding: "40px",
+    transition: "all 0.3s ease",
+  },
+
+  imageFrame: {
+    width: "380px",
+    height: "240px",
+    borderRadius: "24px",
     overflow: "hidden",
-    padding: "20px",
+    position: "relative",
+    border: "1px solid rgba(255,255,255,0.1)",
   },
 
   image: {
-    width: "350px",
-    height: "220px",
+    width: "100%",
+    height: "100%",
     objectFit: "cover",
-    borderRadius: "10px",
   },
 
-  cardContent: { flex: 1 },
-};
+  imageOverlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background:
+      "linear-gradient(rgba(2,6,23,0), rgba(2,6,23,0.4))",
+  },
 
-export default Blogs;
+  cardContent: {
+    flex: 1,
+  },
+
+  cardTitle: {
+    fontSize: "1.8rem",
+    fontWeight: 700,
+    marginBottom: "12px",
+  },
+
+  cardDesc: {
+    color: "#94a3b8",
+    fontSize: "1.05rem",
+    lineHeight: 1.6,
+  },
+};

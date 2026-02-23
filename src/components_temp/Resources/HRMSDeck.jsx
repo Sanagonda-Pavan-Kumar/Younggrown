@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-
+import { useNavigate } from 'react-router-dom';
 import {
   CheckCircle,
   TrendingUp,
@@ -35,6 +35,7 @@ const Underline = ({ width = "200px" }) => (
 );
 
 const HRMSDeck = () => {
+   const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -58,7 +59,7 @@ const HRMSDeck = () => {
               without complexity.
             </p>
 
-            <button style={styles.primaryBtn}>
+            <button style={styles.primaryBtn} onClick={() => navigate("/ContactUs")} >
               Book a Demo <ArrowUpRight size={18} style={{ marginLeft: 8 }} />
             </button>
           </div>

@@ -291,7 +291,7 @@ const serviceItems = [
 
 const resourceItems = [
   { label: "Blogs", icon: FiBarChart2, path: "/blogs" },
-  { label: "Case Studies", icon: FiBriefcase, path: "/casestudies" },
+  // { label: "Case Studies", icon: FiBriefcase, path: "/casestudies" },
    { label: "AI For HR", icon: FiCpu, path: "/aiforhr" },
   { label: "Simplified HR", icon: FiLayers, path: "/simplifiedhr" },
    { label: "HRMS Deck", icon: FiAward, path: "/hrmsdeck" },

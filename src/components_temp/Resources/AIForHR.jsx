@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
 import {
   HiOutlineCpuChip,
   HiOutlineUserGroup,
@@ -13,6 +14,7 @@ import Footers from "../Footers";
 import aiImage from "../../Assets/aihr.avif";
 
 export default function AIForHR() {
+  const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -24,7 +26,6 @@ export default function AIForHR() {
       <Section>
         <motion.div style={styles.heroSplit} {...fadeUp}>
           
-          {/* LEFT CONTENT */}
           <div style={styles.heroLeft}>
             <h1 style={styles.heroTitle}>
               AI & <span style={styles.blueText}>HR Tech Innovations</span>
@@ -36,12 +37,11 @@ export default function AIForHR() {
             </p>
 
             <div style={styles.buttonGroup}>
-              <button style={styles.primaryBtn}>Request Demo</button>
+              <button style={styles.primaryBtn}  onClick={() => navigate("/ContactUs")}>Request Demo</button>
               <button style={styles.secondaryBtn}>Explore Platform</button>
             </div>
           </div>
 
-          {/* RIGHT IMAGE */}
           <div style={styles.heroRight}>
             <img src={aiImage} alt="AI for HR" style={styles.heroImage} />
           </div>
@@ -49,7 +49,6 @@ export default function AIForHR() {
         </motion.div>
       </Section>
 
-      {/* AI FEATURE CARDS */}
       <Section>
         <motion.div style={styles.grid} {...stagger}>
           <AICard

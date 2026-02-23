@@ -26,7 +26,7 @@ import Training from "./components_temp/ServicesNav/Training";
 import Freelancing from "./components_temp/ServicesNav/Freelancing";
 import FreelancerForm from "./components_temp/ServicesNav/Freelancerform";
 // import Blogs from "./components_temp/Resources/Blogs";
-import CaseStudies from "./components_temp/Resources/CaseStudies";
+// import CaseStudies from "./components_temp/Resources/CaseStudies";
 import SimplifiedHR from "./components_temp/Resources/SimplifiedHR";
 import AIforHR from "./components_temp/Resources/AIforHR";
 import HRMSDeck from "./components_temp/Resources/HRMSdeck";
@@ -98,7 +98,7 @@ export default function App() {
 
          
           {/* <Route path="/blogs" element={<Blogs />} /> */}
-          <Route path="/casestudies" element={<CaseStudies />} />
+          {/* <Route path="/casestudies" element={<CaseStudies />} /> */}
           <Route path="/aiforhr" element={<AIforHR/>}/>
         <Route path="/simplifiedhr" element={<SimplifiedHR />} />
         <Route path="/hrmsdeck" element={<HRMSDeck/>}/>
