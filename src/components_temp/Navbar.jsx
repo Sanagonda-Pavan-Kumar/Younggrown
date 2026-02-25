@@ -6,7 +6,7 @@ import {
   FiCpu, FiAward, FiActivity, FiHeadphones, FiLayers, FiGlobe,
 } from "react-icons/fi";
 import { Radius } from "lucide-react";
-
+import logo from "../Assets/logo1 (2).png";
 export default function Navbar() {
   const navigate = useNavigate();
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -81,7 +81,7 @@ export default function Navbar() {
     onClick={() => goTo("/")}
   >
     <img
-      src="/src/Assets/logo1 (2).png"  
+      src={logo} 
       alt="YounGrownai Logo"
       style={styles.logoImage}
     />
@@ -427,7 +427,7 @@ const styles = {
   display: "flex",
   alignItems: "center",
   cursor: "pointer",
-  marginleft:-30,
+ 
 },
 
 logoImage: {
@@ -435,5 +435,6 @@ logoImage: {
   width: "auto",
   objectFit: "contain",
 },
+
 
 };
