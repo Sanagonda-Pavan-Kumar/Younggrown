@@ -29,7 +29,7 @@ import FreelancerForm from "./components_temp/ServicesNav/Freelancerform";
 
 import SimplifiedHR from "./components_temp/Resources/SimplifiedHR";
 import AIforHR from "./components_temp/Resources/AIForHR";
-import HRMSDeck from "./components_temp/Resources/HRMSdeck";
+import HRMSDeck from "./components_temp/Resources/HRMSDeck";
 
 import Blogspage from "./components_temp/Blogspage/Blogs";
 import Blogs1 from "./components_temp/Blogspage/Blogs1";
