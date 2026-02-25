@@ -16,7 +16,7 @@ import Payroll from "./components_temp/Payroll";
 import PerformanceManagement from "./components_temp/PerformanceManagement";
 import ReportsAnalytics from "./components_temp/ReportsAnalytics";
 import AssetManagement from "./components_temp/AssetManagement";
-import Chat from "./components_temp/chat";
+import Chat from "./components_temp/Chat";
 import Support from "./components_temp/Support";
 import RewardsRecognition from "./components_temp/RewardsRecognition";
 import ActivityTracker from "./components_temp/ActivityTracker";
