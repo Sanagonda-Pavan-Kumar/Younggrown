@@ -28,7 +28,7 @@ import FreelancerForm from "./components_temp/ServicesNav/Freelancerform";
 // import Blogs from "./components_temp/Resources/Blogs";
 // import CaseStudies from "./components_temp/Resources/CaseStudies";
 import SimplifiedHR from "./components_temp/Resources/SimplifiedHR";
-import AIforHR from "./components_temp/Resources/AIforHR";
+import AIforHR from "./components_temp/Resources/AIForHR";
 import HRMSDeck from "./components_temp/Resources/HRMSdeck";
 
 import Blogspage from "./components_temp/Blogspage/Blogs";
