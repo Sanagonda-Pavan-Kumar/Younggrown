@@ -84,7 +84,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "space-between",
     minHeight: "auto",
-padding: "40px 8% 40px",   
+padding: "0px 4% 40px",   
     gap: "60px",
     flexWrap: "wrap",
     fontFamily: "'Inter', sans-serif",
@@ -150,5 +150,6 @@ padding: "40px 8% 40px",
     filter: "drop-shadow(0 20px 50px rgba(0,0,0,0.5))",
   },
 };
+
 
 export default Hero;
