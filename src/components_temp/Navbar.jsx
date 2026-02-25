@@ -423,10 +423,11 @@ const styles = {
 
 
  logoWrapper: {
-  height: "90px",
+  height: "150px",
   display: "flex",
   alignItems: "center",
   cursor: "pointer",
+  marginleft:-30,
 },
 
 logoImage: {
