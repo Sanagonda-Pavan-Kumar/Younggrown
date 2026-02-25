@@ -81,8 +81,8 @@ export default function Navbar() {
     onClick={() => goTo("/")}
   >
     <img
-      src="/src/Assets/red1.jpeg"
-      alt="YoungGrownai Logo"
+      src="/src/Assets/logo1 (2).png"  
+      alt="YounGrownai Logo"
       style={styles.logoImage}
     />
   </span>
@@ -422,26 +422,17 @@ const styles = {
   },
 
 
-  logoWrapper: {
-  width: "70px",
-  height: "70px",
-  borderRadius: "50%",
-  overflow: "hidden",
+ logoWrapper: {
+  height: "90px",
   display: "flex",
   alignItems: "center",
-  justifyContent: "center",
   cursor: "pointer",
-  transition: "all 0.3s ease",
-
 },
 
 logoImage: {
-  width: "100%",
   height: "100%",
-  objectFit: "cover",
-  borderRadius: "50%",
-
+  width: "auto",
+  objectFit: "contain",
 },
-
 
 };
