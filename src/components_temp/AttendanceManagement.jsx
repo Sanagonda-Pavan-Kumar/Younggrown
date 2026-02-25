@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Footers from "./Footers";
-import dashboardGif from "../assets/04.gif";
+import dashboardGif from "../Assets/04.gif";
 
 import {
   HiOutlineClock,
@@ -269,3 +269,4 @@ const styles = {
 
 
 };
+
