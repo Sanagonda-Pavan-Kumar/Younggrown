@@ -44,7 +44,7 @@ const styles = {
     display: "flex",
     justifyContent: "center",  
     alignItems: "flex-start",
-    padding: "60px 24px",
+    padding: "0px 24px",
     boxSizing: "border-box",
   },
 
@@ -67,3 +67,4 @@ const styles = {
     lineHeight: 1.6,
   },
 };
+
