@@ -6,7 +6,7 @@ import {
   FiCpu, FiAward, FiActivity, FiHeadphones, FiLayers, FiGlobe,
 } from "react-icons/fi";
 import { Radius } from "lucide-react";
-import logo from "../Assets/logo1 (2).png";
+import logo from "../Assets/Y_logo___1_.png";
 export default function Navbar() {
   const navigate = useNavigate();
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -60,7 +60,7 @@ export default function Navbar() {
     backgroundColor: scrolled ? "rgba(2, 6, 23, 0.8)" : "transparent",
     backdropFilter: scrolled ? "blur(12px)" : "none",
     borderBottom: scrolled ? "1px solid rgba(255, 255, 255, 0.1)" : "1px solid transparent",
-    padding: scrolled ? "12px 8%" : "20px 8%", 
+    padding: scrolled ? "0px 8%" : "20px 8%", 
     position: scrolled ? "fixed" : "sticky", // Fixed works best for scrolled states
     top: 0,
     width: "100%",
@@ -432,7 +432,7 @@ const styles = {
 
 logoImage: {
   height: "100%",
-  width: "auto",
+ 
   objectFit: "contain",
 },
 

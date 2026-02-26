@@ -121,13 +121,13 @@ const styles = {
     fontSize: "36px",
     marginBottom: "20px",
     fontWeight: "700",
-    color: "#1a1a1a",
+    // color: "#fffff",
   },
 
   intro: {
     fontSize: "18px",
     marginBottom: "30px",
-    color: "#555",
+    //  color: "#555",
   },
 
   section: {
